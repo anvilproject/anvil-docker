@@ -1,4 +1,4 @@
-FROM rocker/tidyverse:latest
+FROM rocker/tidyverse:3.6.1
 
 # google-cloud-sdk and python dev libs
 RUN apt-get update && apt-get install -yq --no-install-recommends \
@@ -18,12 +18,13 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
  && curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py \
  && python get-pip.py
 
+## TODO: Futureproof the location of the installed packages, make it analogous to the jupyter image and install packages under /home/rstudio/.rpackages
+
 # google-cloud R packages
-RUN R -e 'install.packages(c( \
-    "bigrquery",  \
-    "googleCloudStorageR"), \
-    repos="http://cran.mtu.edu")' \
- && R -e 'devtools::install_github("DataBiosphere/Ronaldo")'
+RUN R -e 'BiocManager::install( \
+	"DataBiosphere/Ronaldo" \
+	"bigrquery",  \
+	"googleCloudStorageR") '
 
 ENV RSTUDIO_PORT 8001
 ENV RSTUDIO_HOME /etc/rstudio
