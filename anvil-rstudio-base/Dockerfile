@@ -21,10 +21,10 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
 ## TODO: Futureproof the location of the installed packages, make it analogous to the jupyter image and install packages under /home/rstudio/.rpackages
 
 # google-cloud R packages
-RUN R -e 'BiocManager::install( \
-	"DataBiosphere/Ronaldo" \
-	"bigrquery",  \
-	"googleCloudStorageR") '
+RUN R -e "BiocManager::install(c( \
+    'DataBiosphere/Ronaldo', \
+    'bigrquery',  \
+    'googleCloudStorageR'))"
 
 ENV RSTUDIO_PORT 8001
 ENV RSTUDIO_HOME /etc/rstudio
