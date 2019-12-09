@@ -7,6 +7,7 @@
 * [RStudio Server](https://www.rstudio.com/products/rstudio-server/)
 
 ## Libraries
+* BiocManager
 * tidyverse
 * google-cloud-sdk
 * googleCloudStorageR
