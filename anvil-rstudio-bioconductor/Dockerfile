@@ -1,4 +1,4 @@
-FROM anvil-rstudio-base:0.0.2
+FROM us.gcr.io/anvil-gcr-public/anvil-rstudio-base:0.0.2
 
 # This is to avoid the error
 # 'debconf: unable to initialize frontend: Dialog'
@@ -86,7 +86,7 @@ RUN apt-get update \
 RUN apt-get update \
 	&& apt-get -y --no-install-recommends install python-dev \
 	&& pip install wheel \
-        ## Install sklearn and pandas on python
+	## Install sklearn and pandas on python
 	&& pip install sklearn \
 	pandas \
 	pyyaml \
@@ -96,7 +96,7 @@ RUN apt-get update \
 
 # Install libsbml and xvfb
 RUN cd /tmp \
-        ## libsbml
+	## libsbml
 	&& curl -O https://s3.amazonaws.com/linux-provisioning/libSBML-5.10.2-core-src.tar.gz \
 	&& tar zxf libSBML-5.10.2-core-src.tar.gz \
 	&& cd libsbml-5.10.2 \
@@ -111,14 +111,21 @@ RUN cd /tmp \
 	## Clean libsbml, and tar.gz files
 	&& rm -rf /tmp/libsbml-5.10.2 \
 	&& rm -rf /tmp/libSBML-5.10.2-core-src.tar.gz \
-        ## apt-get clean and remove cache
+	## apt-get clean and remove cache
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/*
 
 COPY ./deps/xvfb_init /etc/services.d/xvfb/run
 
+# Install Bioconductor packages
+RUN R -e 'BiocManager::install(c( \
+    "SingleCellExperiment", \
+    "GenomicFeatures", \
+    "GenomicAlignments", \
+    "ShortRead", \
+    "DESeq2"))'
+
 USER root
 
 # Init command for s6-overlay
 CMD ["/init"]
-
