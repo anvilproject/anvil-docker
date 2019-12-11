@@ -22,6 +22,20 @@
 
 ## Bioconductor modifications
 
+#### Bioconductor packages
+
+SingleCellExperiment
+GenomicFeatures
+GenomicAlignments
+ShortRead
+DESeq2
+AnnotationHub
+ExperimentHub
+ensembldb
+scRNAseq
+scran
+Rtsne
+
 #### System dependencies installed for Bioconductor
 fortran77-compiler
 byacc
