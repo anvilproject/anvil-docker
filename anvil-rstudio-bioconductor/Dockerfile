@@ -118,12 +118,9 @@ RUN cd /tmp \
 COPY ./deps/xvfb_init /etc/services.d/xvfb/run
 
 # Install Bioconductor packages
-RUN R -e 'BiocManager::install(c( \
-    "SingleCellExperiment", \
-    "GenomicFeatures", \
-    "GenomicAlignments", \
-    "ShortRead", \
-    "DESeq2"))'
+RUN curl -O https://raw.githubusercontent.com/Bioconductor/anvil-docker/master/anvil-rstudio-bioconductor/install.R \
+	&& R -f install.R \
+	&& rm -rf install.R
 
 USER root
 
