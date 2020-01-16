@@ -61,7 +61,9 @@ The AnVIL RStudio image is customized to disable the RStudio login screen. Futur
 * RStudio hooks to refresh credentials 
 * An RStudio pause after inactivity
 
-### System Dependencies
+### Dependencies
+
+**System**
 * fortran77-compiler
 * byacc
 * automake
@@ -104,11 +106,11 @@ The AnVIL RStudio image is customized to disable the RStudio login screen. Futur
 * libz-dev
 * liblzma-dev
 
-### Bioconductor Dependencies
+**Bioconductor Dependencies**
 * libsbml
 * xvfb
 
-### Perl Dependencies
+**Perl Dependencies**
 * libarchive-extract-perl
 * libfile-copy-recursive-perl
 * libcgi-pm-perl
@@ -116,19 +118,19 @@ The AnVIL RStudio image is customized to disable the RStudio login screen. Futur
 * libdbd-mysql-perl
 * libxml-simple-perl
 
-### Python Dependencies
+**Python Dependencies**
 * python-dev
 * sklearn
 * pandas
 * pyyaml
 * cwltool
 
-### Additional dependencies
+**Additional dependencies**
 * xfonts-100dpi
 * xfonts-75dpi
 * biber
 
-### Databases and Other Software
+**Databases and Other Software**
 * sqlite
 * openmpi-bin
 * mpi-default-bin
