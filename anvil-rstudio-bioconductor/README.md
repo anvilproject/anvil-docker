@@ -7,7 +7,7 @@
 [Rstudio](https://rstudio.com/products/rstudio/) is an integrated development environment to support the R statistical programming language. The AnVIL RStudio Bioconductor Docker is an RStudio environment that supports [Bioconductor](https://www.bioconductor.org/), an open source software that supports bioinformatic analyses. The RStudio Bioconductor Docker is based off the AnVIL RStudio Docker, a version-tagged image of RStudio, providing consistent RStudio software, packages, and dependencies with every use. This document describes the [RStudio Bioconductor] Docker Image and how to use it in the cloud-based platform [Terra](app.terra.bio). Unlike the currently existing [Terra base images](https://github.com/DataBiosphere/terra-docker#terra-base-images), RStudio is not hosted in a Jupyter Notebook; any work performed in Terra RStudio will not be saved. At the end of this document, you will find Instructions and suggestions for saving RStudio data and code. 
 
 ## Table of Contents
-- [RStudio Docker Contents](#rstudio-docker-contents)
+- [RStudio Bioconductor Docker Contents](#rstudio-bioconductor-docker-contents)
   * [Accessing the AnVIL RStudio Image](#accessing-the-anvil-rstudio-bioconductor-image)
   * [Base Image](#base-image)
   * [Applications](#applications)
@@ -23,7 +23,7 @@
 - [Saving RStudio Data](#saving-rstudio-data)
 - [Versioning](#versioning)
 
-# RStudio Docker Contents
+# RStudio Bioconductor Docker Contents
 
 ### Accessing the AnVIL RStudio Bioconductor Image
 
