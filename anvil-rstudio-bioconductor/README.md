@@ -13,7 +13,7 @@
   * [Applications](#applications)
   * [Libraries](#libraries)
   * [Customizations](#customizations)
-  * [Dependencies](#system-dependencies)
+  * [Dependencies](#dependencies)
 - [Using R Studio in Terra](#using-r-studio-in-terra)
 - [Saving RStudio Data](#saving-rstudio-data)
 - [Versioning](#versioning)
@@ -62,8 +62,7 @@ The AnVIL RStudio image is customized to disable the RStudio login screen. Futur
 * An RStudio pause after inactivity
 
 ### Dependencies
-
-**System**
+**System Dependencies**
 * fortran77-compiler
 * byacc
 * automake
