@@ -111,7 +111,7 @@ The AnVIL RStudio image is customized to disable the RStudio login screen. Futur
 * libz-dev
 * liblzma-dev
 
-#### Bioconductor Dependencies
+### Bioconductor Dependencies
 * libsbml
 * xvfb
 
