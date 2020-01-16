@@ -66,9 +66,6 @@ The AnVIL RStudio image is customized to disable the RStudio login screen. Futur
 * RStudio hooks to refresh credentials 
 * An RStudio pause after inactivity
 
-
-## AnVIL RStudio Bioconductor Docker Contents
-
 ### System Dependencies
 * fortran77-compiler
 * byacc
