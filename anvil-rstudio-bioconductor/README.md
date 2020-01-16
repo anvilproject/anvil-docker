@@ -13,7 +13,6 @@
   * [Applications](#applications)
   * [Libraries](#libraries)
   * [Customizations](#customizations)
-- [RStudio Bioconductor Contents](#anvil-rstudio-bioconductor-docker-contents)
   * [System Dependencies](#system-dependencies)
   * [Biconductor Dependencies](#bioconductor-dependencies)
   * [Perl Dependencies](#perl-dependencies)
@@ -23,6 +22,8 @@
 - [Using R Studio in Terra](#using-r-studio-in-terra)
 - [Saving RStudio Data](#saving-rstudio-data)
 - [Versioning](#versioning)
+
+# RStudio Docker Contents
 
 ### Accessing the AnVIL RStudio Bioconductor Image
 
@@ -152,11 +153,11 @@ The AnVIL RStudio image is customized to disable the RStudio login screen. Futur
 * jags
 
 
-## Using RStudio in Terra
+# Using RStudio in Terra
 
 Detailed instructions on accessing the AnVIL RStudio image can be found in the "[Working with project-specific images](https://broadinstitute.zendesk.com/knowledge/articles/360037269472)" documentation in Terra support.
 
-## Saving RStudio Data
+# Saving RStudio Data
 
 Code and data generated in Terra RStudio will not be saved. Below are three suggestions for saving your work.
 
@@ -172,7 +173,7 @@ Once your files are copied to workspace google bucket, you can access them by se
 ### 3. Checking code into GitHub
 You can install Git on RStudio and use it to [check code into GitHub](https://help.github.com/en/github/importing-your-projects-to-github). 
 
-## Versioning
+# Versioning
 
 All updates and changes to the current Docker image are listed in the Rstudio image [CHANGELOG.md file](CHANGELOG.md). 
 
