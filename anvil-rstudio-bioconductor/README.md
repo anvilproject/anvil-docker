@@ -45,19 +45,19 @@ The Bioconductor image inherits all libraries from `anvil-rstudio-base`. The fol
 * [bigrquery](https://github.com/r-dbi/bigrquery): a package to allow interaction with Google's BigQuery
 * [DataBiosphere/Ronaldo](https://github.com/DataBiosphere/Ronaldo): a package of functions commonly used for R Notebooks created from Leonardo
 
-The following are Bioconductor-specific packages:
+The following are Bioconductor Docker-specific packages:
 * [BiocManager](https://www.bioconductor.org/install/): a tool for installing Bioconductor packages
-* SingleCellExperiment
-* GenomicFeatures
-* GenomicAlignments
-* ShortRead
-* DESeq2
-* AnnotationHub
-* ExperimentHub
-* ensembldb
-* scRNAseq
-* scran
-* Rtsne
+* [SingleCellExperiment](): an S4 container for single-cell analyses
+* [GenomicFeatures](https://www.bioconductor.org/packages/release/bioc/html/GenomicFeatures.html): tools for manipulating transcript annonations
+* [GenomicAlignments](https://www.bioconductor.org/help/search/index.html?q=GenomicAlignments/): containers for storing short genomic alignments
+* [ShortRead](https://www.bioconductor.org/packages/release/bioc/html/ShortRead.html): tools for manipulating and assessing FASTQs
+* [DESeq2](https://www.bioconductor.org/help/search/index.html?q=DESeq2/): tools for RNAseq analyses
+* [AnnotationHub](https://www.bioconductor.org/packages/release/bioc/html/AnnotationHub.html): resources for gene annotation
+* [ExperimentHub](https://www.bioconductor.org/packages/release/bioc/html/ExperimentHub.html): tools for accessing curated experiments
+* [ensembldb](https://www.bioconductor.org/packages/release/bioc/html/ensembldb.html): tools for making Ensembl-based annotations
+* [scRNAseq](https://www.bioconductor.org/packages/release/data/experiment/html/scRNAseq.html): a collection of public, single-cell RNAseq datasets
+* [scran](https://www.bioconductor.org/packages/release/bioc/html/scran.html): tools for single-cell analyses
+* [Rtsne](https://cran.r-project.org/web/packages/Rtsne/index.html): an R package for making tSNE plots
 
 ### Customizations
 
