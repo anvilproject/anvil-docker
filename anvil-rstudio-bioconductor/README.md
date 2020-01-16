@@ -15,6 +15,11 @@
   * [Customizations](#customizations)
 - [RStudio Bioconductor Contents](#anvil-rstudio-bioconductor-docker-contents)
   * [System Dependencies](#system-dependencies)
+  * [Biconductor Dependencies)(#bioconductor-dependencies)
+  * [Perl Dependencies](#perl-dependencies)
+  * [Python Dependencies](#python-dependencies)
+  * [Additional Dependencies](#additional-dependencies)
+  * [Databases and Other Software](#databases-and-other-software)  
 - [Using R Studio in Terra](#using-r-studio-in-terra)
 - [Saving RStudio Data](#saving-rstudio-data)
 - [Versioning](#versioning)
@@ -130,8 +135,7 @@ xfonts-100dpi
 xfonts-75dpi
 biber
 
-
-### Databases and other software
+### Databases and Other Software
 sqlite
 openmpi-bin
 mpi-default-bin
@@ -146,7 +150,6 @@ ggobi
 graphviz
 protobuf-compiler
 jags
-
 
 
 ## Using RStudio in Terra
