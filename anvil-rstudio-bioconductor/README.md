@@ -1,46 +1,67 @@
 | RStudio-Bioconductor Version | Date Updated | Questions or Feedback |
 | --- | --- | --- |
-| 0.0.1 | 10/06/2019 | Adrian Sharma: adrian@broadinstitute.org |
+| 0.0.2 | 10/06/2019 | Adrian Sharma: adrian@broadinstitute.org |
 
 # RStudio-Bioconductor Docker Image
 
-## Base image
-* [us.gcr.io/anvil-gcr-public/anvil-rstudio-base](us.gcr.io/anvil-gcr-public/anvil-rstudio-base)
+[Rstudio](https://rstudio.com/products/rstudio/) is an integrated development environment to support the R statistical programming language. The AnVIL RStudio Docker is a version-tagged image of RStudio, providing consistent RStudio software, packages, and dependencies with every use. This document describes the [RStudio](https://rstudio.com/products/rstudio/) Docker Image and how to use it in the cloud-based platform [Terra](app.terra.bio). Unlike the currently existing [Terra base images](https://github.com/DataBiosphere/terra-docker#terra-base-images), RStudio is not hosted in a Jupyter Notebook; any work performed in Terra RStudio will not be saved. At the end of this document, you will find Instructions and suggestions for saving RStudio data and code. 
 
-## Applications
-* [RStudio Server](https://www.rstudio.com/products/rstudio-server/)
-* All system dependencies for Bioconductor packages.
+## Table of Contents
+- [RStudio Docker Contents](#rstudio-docker-contents)
+  * [Accessing the AnVIL RStudio Image](#accessing-the-anvil-rstudio-bioconductor-image)
+  * [Base Image](#base-image)
+  * [Applications](#applications)
+  * [Libraries](#libraries)
+  * [Customizations](#customizations)
+- [Bioconductor System Dependencies]()
+- [Using R Studio in Terra](#using-r-studio-in-terra)
+- [Saving RStudio Data](#saving-rstudio-data)
+- [Versioning](#versioning)
 
-## Libraries
-* Inherits all libraries from `anvil-rstudio-base`
-* BiocManager
-* tidyverse
-* google-cloud-sdk
-* googleCloudStorageR
-* bigrquery
-* DataBiosphere/Ronaldo
+### Accessing the AnVIL RStudio Bioconductor Image
 
-## Customiziations
-* Disabled RStudio login screen
-* TODO: RStudio hooks to refresh credentials and pause on inactivity
+The AnVIL Rstudio Bioconductor Image can be accessed using the following URL: us.gcr.io/anvil-gcr-public/anvil-rstudio-base. 
 
-## Bioconductor modifications
+### Base Image
 
-#### Bioconductor packages
+The base image for the AnVIL RStudio Bioconductor Docker is the [rocker/tidyverse](https://hub.docker.com/r/rocker/tidyverse/) image provided by the [Rocker Project](https://www.rocker-project.org/). This image additionally contains tidyverse and devtools.
 
-SingleCellExperiment
-GenomicFeatures
-GenomicAlignments
-ShortRead
-DESeq2
-AnnotationHub
-ExperimentHub
-ensembldb
-scRNAseq
-scran
-Rtsne
+### Applications
 
-#### System dependencies installed for Bioconductor
+The AnVIL R Docker contains the [RStudio Server](https://www.rstudio.com/products/rstudio-server/) application which supports a web browser version of RStudio. Additionally, it contains all system dependencies for Bioconductor packages.
+
+### Libraries
+The Bioconductor image inherits all libraries from `anvil-rstudio-base`. The following packages are included in the base image:
+* [tidyverse](https://www.tidyverse.org/packages/): a suite of packages designed for data sciences 
+* [google-cloud-sdk](https://cloud.google.com/sdk/): tools for the google cloud platform
+* [googleCloudStorageR](http://code.markedmondson.me/googleCloudStorageR/): an R library for interacting with google cloud storage
+* [bigrquery](https://github.com/r-dbi/bigrquery): a package to allow interaction with Google's BigQuery
+* [DataBiosphere/Ronaldo](https://github.com/DataBiosphere/Ronaldo): a package of functions commonly used for R Notebooks created from Leonardo
+
+The following are Bioconductor-specific packages:
+* [BiocManager](https://www.bioconductor.org/install/): a tool for installing Bioconductor packages
+* SingleCellExperiment
+* GenomicFeatures
+* GenomicAlignments
+* ShortRead
+* DESeq2
+* AnnotationHub
+* ExperimentHub
+* ensembldb
+* scRNAseq
+* scran
+* Rtsne
+
+### Customizations
+
+The AnVIL RStudio image is customized to disable the RStudio login screen. Future customizations will include:
+
+* RStudio hooks to refresh credentials 
+* An RStudio pause after inactivity
+
+
+## Bioconductor Dependencies
+### System dependencies
 fortran77-compiler
 byacc
 automake
