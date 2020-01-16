@@ -43,7 +43,7 @@ The Bioconductor image inherits all libraries from `anvil-rstudio-base`. The fol
 The following are Bioconductor Docker-specific packages:
 * [BiocManager](https://www.bioconductor.org/install/): a tool for installing Bioconductor packages
 * [SingleCellExperiment](): an S4 container for single-cell analyses
-* [GenomicFeatures](https://www.bioconductor.org/packages/release/bioc/html/GenomicFeatures.html): tools for manipulating transcript annonations
+* [GenomicFeatures](https://www.bioconductor.org/packages/release/bioc/html/GenomicFeatures.html): tools for manipulating transcript annotations
 * [GenomicAlignments](https://www.bioconductor.org/help/search/index.html?q=GenomicAlignments/): containers for storing short genomic alignments
 * [ShortRead](https://www.bioconductor.org/packages/release/bioc/html/ShortRead.html): tools for manipulating and assessing FASTQs
 * [DESeq2](https://www.bioconductor.org/help/search/index.html?q=DESeq2/): tools for RNAseq analyses
@@ -124,7 +124,7 @@ The AnVIL RStudio image is customized to disable the RStudio login screen. Futur
 * pyyaml
 * cwltool
 
-**Additional dependencies**
+**Additional Dependencies**
 * xfonts-100dpi
 * xfonts-75dpi
 * biber
@@ -161,7 +161,7 @@ Use the [gsutil](https://cloud.google.com/storage/docs/gsutil) tool to copy file
     !gsutil cp ./* gs://GoogleBucketURL
 
 ### 2. Downloading RStudio files to your local computer
-Once your files are copied to workspace google bucket, you can access them by selecting the Data tab of the workspace and choosing the Files option on bottom left. This will display the files available in your google bucket. By selecting a file, you can download it directly. Additionally, [this Terra support document](https://support.terra.bio/hc/en-us/articles/360029251091-Broad-Genomics-Downloading-data-from-a-Terra-workspace) details alternative techniques you can use to download data files. 
+Once your files are copied to a workspace google bucket, you can access them by selecting the Data tab of the workspace and choosing the Files option on bottom left. This will display the files available in your google bucket. By selecting a file, you can download it directly. Additionally, [this Terra support document](https://support.terra.bio/hc/en-us/articles/360029251091-Broad-Genomics-Downloading-data-from-a-Terra-workspace) details alternative techniques you can use to download data files. 
 
 ### 3. Checking code into GitHub
 You can install Git on RStudio and use it to [check code into GitHub](https://help.github.com/en/github/importing-your-projects-to-github). 
@@ -169,4 +169,5 @@ You can install Git on RStudio and use it to [check code into GitHub](https://he
 # Versioning
 
 All updates and changes to the current Docker image are listed in the Rstudio image [CHANGELOG.md file](CHANGELOG.md). 
+
 
