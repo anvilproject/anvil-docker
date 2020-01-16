@@ -4,7 +4,7 @@
 
 # RStudio-Bioconductor Docker Image
 
-[Rstudio](https://rstudio.com/products/rstudio/) is an integrated development environment to support the R statistical programming language. The AnVIL RStudio Docker is a version-tagged image of RStudio, providing consistent RStudio software, packages, and dependencies with every use. This document describes the [RStudio](https://rstudio.com/products/rstudio/) Docker Image and how to use it in the cloud-based platform [Terra](app.terra.bio). Unlike the currently existing [Terra base images](https://github.com/DataBiosphere/terra-docker#terra-base-images), RStudio is not hosted in a Jupyter Notebook; any work performed in Terra RStudio will not be saved. At the end of this document, you will find Instructions and suggestions for saving RStudio data and code. 
+[Rstudio](https://rstudio.com/products/rstudio/) is an integrated development environment to support the R statistical programming language. The AnVIL RStudio Bioconductor Docker is based off the AnVIL RStudio Docker, a version-tagged image of RStudio, providing consistent RStudio software, packages, and dependencies with every use. This document describes the [RStudio Bioconductor] Docker Image and how to use it in the cloud-based platform [Terra](app.terra.bio). Unlike the currently existing [Terra base images](https://github.com/DataBiosphere/terra-docker#terra-base-images), RStudio is not hosted in a Jupyter Notebook; any work performed in Terra RStudio will not be saved. At the end of this document, you will find Instructions and suggestions for saving RStudio data and code. 
 
 ## Table of Contents
 - [RStudio Docker Contents](#rstudio-docker-contents)
@@ -13,7 +13,8 @@
   * [Applications](#applications)
   * [Libraries](#libraries)
   * [Customizations](#customizations)
-- [Bioconductor System Dependencies]()
+- [RStudio Bioconductor Contents](#anvil-rstudio-bioconductor-docker-contents)
+  * [System Dependencies](#system-dependencies)
 - [Using R Studio in Terra](#using-r-studio-in-terra)
 - [Saving RStudio Data](#saving-rstudio-data)
 - [Versioning](#versioning)
@@ -60,8 +61,9 @@ The AnVIL RStudio image is customized to disable the RStudio login screen. Futur
 * An RStudio pause after inactivity
 
 
-## Bioconductor Dependencies
-### System dependencies
+## AnVIL RStudio Bioconductor Docker Contents
+
+### System Dependencies
 fortran77-compiler
 byacc
 automake
@@ -104,7 +106,11 @@ libperl-dev
 libz-dev
 liblzma-dev
 
-#### perl modules
+#### Bioconductor Dependencies
+libsbml
+xvfb
+
+### Perl Dependencies
 libarchive-extract-perl
 libfile-copy-recursive-perl
 libcgi-pm-perl
@@ -112,7 +118,20 @@ libdbi-perl
 libdbd-mysql-perl
 libxml-simple-perl
 
-#### Databases and other software
+### Python Dependencies
+python-dev
+sklearn
+pandas
+pyyaml
+cwltool
+
+### Additional dependencies
+xfonts-100dpi
+xfonts-75dpi
+biber
+
+
+### Databases and other software
 sqlite
 openmpi-bin
 mpi-default-bin
@@ -128,72 +147,7 @@ graphviz
 protobuf-compiler
 jags
 
-#### Additional resources
-xfonts-100dpi
-xfonts-75dpi
-biber
 
-#### python dependencies
-python-dev
-sklearn
-pandas
-pyyaml
-cwltool
-
-#### Bioconductor package specific dependencies
-libsbml
-xvfb
-
-| RStudio Version | Date Updated | Questions or Feedback |
-| --- | --- | --- |
-| 0.0.1 | 10/06/2019 | Adrian Sharma: adrian@broadinstitute.org |
-
-# AnVIL RStudio Docker Image
-
-[Rstudio](https://rstudio.com/products/rstudio/) is an integrated development environment to support the R statistical programming language. The AnVIL RStudio Docker is a version-tagged image of RStudio, providing consistent RStudio software, packages, and dependencies with every use. This document describes the [RStudio](https://rstudio.com/products/rstudio/) Docker Image and how to use it in the cloud-based platform [Terra](app.terra.bio). Unlike the currently existing [Terra base images](https://github.com/DataBiosphere/terra-docker#terra-base-images), RStudio is not hosted in a Jupyter Notebook; any work performed in Terra RStudio will not be saved. At the end of this document, you will find Instructions and suggestions for saving RStudio data and code. 
-
-## Table of Contents
-- [RStudio Docker Contents](#rstudio-docker-contents)
-  * [Accessing the AnVIL RStudio Image](#accessing-the-anvil-rstudio-image)
-  * [Base Image](#base-image)
-  * [Applications](#applications)
-  * [Libraries](#libraries)
-  * [Customizations](#customizations)
-- [Using R Studio in Terra](#using-r-studio-in-terra)
-- [Saving RStudio Data](#saving-rstudio-data)
-- [Versioning](#versioning)
-
-## RStudio Docker Contents
-
-### Accessing the AnVIL RStudio Image
-
-The AnVIL Rstudio Image can be accessed using the following URL: us.gcr.io/anvil-gcr-public/anvil-rstudio-base:0.0.1. 
-
-### Base Image
-
-The base image for the AnVIL RStudio Docker is the [rocker/tidyverse](https://hub.docker.com/r/rocker/tidyverse/) image provided by the [Rocker Project](https://www.rocker-project.org/). This image additionally contains tidyverse and devtools.
-
-
-### Applications
-
-The AnVIL R Docker contains the [RStudio Server](https://www.rstudio.com/products/rstudio-server/) application which supports a web browser version of RStudio. 
-
-### Libraries
-
-The following packages are pre-loaded in the AnVIL RStudio image:
-
-* [tidyverse](https://www.tidyverse.org/packages/): a suite of packages designed for data sciences 
-* [google-cloud-sdk](https://cloud.google.com/sdk/): tools for the google cloud platform
-* [googleCloudStorageR](http://code.markedmondson.me/googleCloudStorageR/): an R library for interacting with google cloud storage
-* [bigrquery](https://github.com/r-dbi/bigrquery): a package to allow interaction with Google's BigQuery
-* [DataBiosphere/Ronaldo](https://github.com/DataBiosphere/Ronaldo): a package of functions commonly used for R Notebooks created from Leonardo
-
-### Customizations
-
-The AnVIL RStudio image is customized to disable the RStudio login screen. Future customizations will include:
-
-* RStudio hooks to refresh credentials 
-* An RStudio pause after inactivity
 
 ## Using RStudio in Terra
 
