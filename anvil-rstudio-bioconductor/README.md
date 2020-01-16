@@ -15,7 +15,7 @@
   * [Customizations](#customizations)
 - [RStudio Bioconductor Contents](#anvil-rstudio-bioconductor-docker-contents)
   * [System Dependencies](#system-dependencies)
-  * [Biconductor Dependencies)(#bioconductor-dependencies)
+  * [Biconductor Dependencies](#bioconductor-dependencies)
   * [Perl Dependencies](#perl-dependencies)
   * [Python Dependencies](#python-dependencies)
   * [Additional Dependencies](#additional-dependencies)
@@ -69,87 +69,87 @@ The AnVIL RStudio image is customized to disable the RStudio login screen. Futur
 ## AnVIL RStudio Bioconductor Docker Contents
 
 ### System Dependencies
-fortran77-compiler
-byacc
-automake
-libpng-dev
-libnetcdf-dev
-libhdf5-serial-dev
-libfftw3-dev
-libopenbabel-dev
-libopenmpi-dev
-libexempi3
-libxt-dev
-libgdal-dev
-libjpeg62-turbo-dev
-libtiff5-dev
-libreadline-dev
-libgsl0-dev
-libgsl2
-libgtk2.0-dev
-libgl1-mesa-dev
-libglu1-mesa-dev
-libgmp3-dev
-libhdf5-dev
-libncurses-dev
-libbz2-dev
-libxpm-dev
-liblapack-dev
-libv8-3.14-dev
-libgtkmm-2.4-dev
-libmpfr-dev
-libudunits2-dev
-libmodule-build-perl
-libapparmor-dev
-libgeos-dev
-libprotoc-dev
-librdf0-dev
-libmagick++-dev
-libpoppler-cpp-dev
-libprotobuf-dev
-libperl-dev
-libz-dev
-liblzma-dev
+* fortran77-compiler
+* byacc
+* automake
+* libpng-dev
+* libnetcdf-dev
+* libhdf5-serial-dev
+* libfftw3-dev
+* libopenbabel-dev
+* libopenmpi-dev
+* libexempi3
+* libxt-dev
+* libgdal-dev
+* libjpeg62-turbo-dev
+* libtiff5-dev
+* libreadline-dev
+* libgsl0-dev
+* libgsl2
+* libgtk2.0-dev
+* libgl1-mesa-dev
+* libglu1-mesa-dev
+* libgmp3-dev
+* libhdf5-dev
+* libncurses-dev
+* libbz2-dev
+* libxpm-dev
+* liblapack-dev
+* libv8-3.14-dev
+* libgtkmm-2.4-dev
+* libmpfr-dev
+* libudunits2-dev
+* libmodule-build-perl
+* libapparmor-dev
+* libgeos-dev
+* libprotoc-dev
+* librdf0-dev
+* libmagick++-dev
+* libpoppler-cpp-dev
+* libprotobuf-dev
+* libperl-dev
+* libz-dev
+* liblzma-dev
 
 #### Bioconductor Dependencies
-libsbml
-xvfb
+* libsbml
+* xvfb
 
 ### Perl Dependencies
-libarchive-extract-perl
-libfile-copy-recursive-perl
-libcgi-pm-perl
-libdbi-perl
-libdbd-mysql-perl
-libxml-simple-perl
+* libarchive-extract-perl
+* libfile-copy-recursive-perl
+* libcgi-pm-perl
+* libdbi-perl
+* libdbd-mysql-perl
+* libxml-simple-perl
 
 ### Python Dependencies
-python-dev
-sklearn
-pandas
-pyyaml
-cwltool
+* python-dev
+* sklearn
+* pandas
+* pyyaml
+* cwltool
 
 ### Additional dependencies
-xfonts-100dpi
-xfonts-75dpi
-biber
+* xfonts-100dpi
+* xfonts-75dpi
+* biber
 
 ### Databases and Other Software
-sqlite
-openmpi-bin
-mpi-default-bin
-openmpi-common
-openmpi-doc
-tcl8.5-dev
-tk-dev
-openjdk-8-jdk
-imagemagick
-tabix
-ggobi
-graphviz
-protobuf-compiler
-jags
+* sqlite
+* openmpi-bin
+* mpi-default-bin
+* openmpi-common
+* openmpi-doc
+* tcl8.5-dev
+* tk-dev
+* openjdk-8-jdk
+* imagemagick
+* tabix
+* ggobi
+* graphviz
+* protobuf-compiler
+* jags
 
 
 ## Using RStudio in Terra
