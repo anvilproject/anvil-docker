@@ -1,6 +1,6 @@
-| RStudio-Bioconductor Version | Date Updated | Questions or Feedback |
+| RStudio-Bioconductor Version | Date Updated | Questions or Feedback | Image URL |
 | --- | --- | --- |
-| 0.0.3 | 12/11/2019 | Adrian Sharma: adrian@broadinstitute.org |
+| 0.0.3 | 12/11/2019 | Contact Bioconductor Team |
 
 # RStudio-Bioconductor Docker Image
 
