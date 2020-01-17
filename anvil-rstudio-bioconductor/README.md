@@ -4,19 +4,22 @@
 
 # RStudio-Bioconductor Docker Image
 
-[Rstudio](https://rstudio.com/products/rstudio/) is an integrated development environment to support the R statistical programming language. The AnVIL RStudio Bioconductor Docker is an RStudio environment that supports [Bioconductor](https://www.bioconductor.org/), an open source software that supports bioinformatic analyses. The RStudio Bioconductor Docker is based off the AnVIL RStudio Docker, a version-tagged image of RStudio, providing consistent RStudio software, packages, and dependencies with every use. This document describes the [RStudio Bioconductor] Docker Image and how to use it in the cloud-based platform [Terra](app.terra.bio). Unlike the currently existing [Terra base images](https://github.com/DataBiosphere/terra-docker#terra-base-images), RStudio is not hosted in a Jupyter Notebook; any work performed in Terra RStudio will not be saved to a workpace google bucket. This document provides instructions and resources for saving RStudio data and code. 
+[Rstudio](https://rstudio.com/products/rstudio/) is an integrated development environment to support the R statistical programming language. The AnVIL RStudio Bioconductor Docker is an RStudio environment that supports [Bioconductor](https://www.bioconductor.org/), an open source software that supports bioinformatic analyses. The RStudio Bioconductor Docker is based off the AnVIL RStudio Docker, a version-tagged image of RStudio, providing consistent RStudio software, packages, and dependencies with every use. This document describes the [RStudio Bioconductor] Docker Image and how to use it in the cloud-based platform [Terra](app.terra.bio). Unlike the currently existing [Terra base images](https://github.com/DataBiosphere/terra-docker#terra-base-images), RStudio is not hosted in a Jupyter Notebook; any work performed in Terra RStudio will not be saved to a workspace google bucket. This document provides instructions and resources for saving RStudio data and code. 
 
 ## Table of Contents
+- [Accessing the AnVIL RStudio Bioconductor Image](#accessing-the-anvil-rstudio-bioconductor-image)
+- [Using RStudio in Terra](#using-rstudio-in-terra)
+  * [Saving RStudio Data](#saving-rstudio-data)
+    + [1. Copying RStudio work to a workspace google bucket](#1-copying-rstudio-work-to-a-workspace-google-bucket)
+    + [2. Downloading RStudio files to your local computer](#2-downloading-rstudio-files-to-your-local-computer)
+    + [3. Checking code into GitHub](#3-checking-code-into-github)
 - [RStudio Bioconductor Docker Contents](#rstudio-bioconductor-docker-contents)
-  * [Accessing the AnVIL RStudio Image](#accessing-the-anvil-rstudio-bioconductor-image)
-  * [Base Image](#base-image)
-  * [Applications](#applications)
-  * [Libraries](#libraries)
-  * [Customizations](#customizations)
-  * [Dependencies](#dependencies)
-- [Using R Studio in Terra](#using-r-studio-in-terra)
-- [Saving RStudio Data](#saving-rstudio-data)
-- [Versioning](#versioning)
+    + [Base Image](#base-image)
+    + [Applications](#applications)
+    + [Libraries](#libraries)
+    + [Customizations](#customizations)
+    + [Dependencies](#dependencies)
+- [RStudio Bioconductor Updates](#rstudio-bioconductor-updates)
 
 
 # Accessing the AnVIL RStudio Bioconductor Image
@@ -27,13 +30,13 @@ The AnVIL Rstudio Bioconductor Image can be accessed using the Docker Image URL 
 
 The RStudio Docker can be used in the cloud-based platform Terra. Detailed instructions on accessing the AnVIL RStudio image in Terra can be found in the "[Working with Project-Specific Environments in Terra](https://broadinstitute.zendesk.com/knowledge/articles/360037269472)" documentation in Terra support.
 
-# Saving RStudio Data
+## Saving RStudio Data
 
 Unlike in a Terra base Docker image, any work performed in a project-specific Docker (like RStudio) will not be saved to your workspace google bucket. While your code will be saved on the runtime environment, if you delete the runtime (or if your runtime becomes unresponsive), you will lose code. To avoid losing work, make sure to back up your code or save it using the following techniques.
 
 ### 1. Copying RStudio work to a workspace google bucket
 
-Use the [gsutil](https://cloud.google.com/storage/docs/gsutil) tool to copy files to your workspace google bucket. The "[Working with project-specific images](https://broadinstitute.zendesk.com/knowledge/articles/360037269472)" documentation in Terra support demonstrates how to identify the url for a workspace google bucket. After identifying the workspace google bucket url, you can copy files to a google bucket by navigating to them in your terminal and using the bash command: 
+Use the [gsutil](https://cloud.google.com/storage/docs/gsutil) tool to copy files to your workspace google bucket. The "[Working with Project-Specific Environments in Terra](https://broadinstitute.zendesk.com/knowledge/articles/360037269472)" documentation in Terra support demonstrates how to identify the url for a workspace google bucket. After identifying the workspace google bucket url, you can copy files to a google bucket by navigating to them in your terminal and using the bash command: 
 
     gsutil cp ./* gs://GoogleBucketURL
 
@@ -44,6 +47,7 @@ Once your files are copied to a workspace google bucket, you can access them by 
 You can install Git on RStudio and use it to [check code into GitHub](https://help.github.com/en/github/importing-your-projects-to-github). 
 
 # RStudio Bioconductor Docker Contents
+
 ### Base Image
 
 The base image for the AnVIL RStudio Bioconductor Docker is the [RStudio Docker](https://github.com/anvilproject/anvil-docker/tree/master/anvil-rstudio-base). This contains the [rocker/tidyverse](https://hub.docker.com/r/rocker/tidyverse/) image provided by the [Rocker Project](https://www.rocker-project.org/), as well as tidyverse and devtools.
@@ -79,7 +83,7 @@ The following are Bioconductor Docker-specific packages:
 The AnVIL RStudio image is customized to disable the RStudio login screen. Future customizations will include:
 
 * RStudio hooks to refresh credentials 
-* An RStudio pause after inactivity
+* An RStudio auto pause after inactivity
 
 ### Dependencies
 **System Dependencies**
@@ -165,10 +169,9 @@ The AnVIL RStudio image is customized to disable the RStudio login screen. Futur
 * protobuf-compiler
 * jags
 
-
-
 # RStudio Bioconductor Updates
 
 All updates and changes to the current Docker image are listed in the Rstudio image [CHANGELOG.md file](CHANGELOG.md). 
+
 
 
