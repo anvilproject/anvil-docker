@@ -41,7 +41,7 @@ Use the [gsutil](https://cloud.google.com/storage/docs/gsutil) tool to copy file
     gsutil cp ./* gs://<WORKSPACE_BUCKET>
 
 ### 2. Downloading RStudio files to your local computer
-Once your files are copied to a workspace google bucket, you can access them by selecting the Data tab of the workspace and choosing the Files option on bottom left. This will display the files available in your google bucket. By selecting a file, you can download it directly. Additionally, [this Terra support document](https://support.terra.bio/hc/en-us/articles/360029251091-Broad-Genomics-Downloading-data-from-a-Terra-workspace) details alternative techniques you can use to download data files. 
+Once your files are copied to a workspace google bucket, you can access them by selecting the Data tab of the workspace and choosing the Files option on the bottom left. This will display the files available in your google bucket. By selecting a file, you can download it directly. Additionally, [this Terra support document](https://support.terra.bio/hc/en-us/articles/360029251091-Broad-Genomics-Downloading-data-from-a-Terra-workspace) details alternative techniques you can use to download data files. 
 
 ### 3. Checking code into GitHub
 You can install Git on RStudio and use it to [check code into GitHub](https://help.github.com/en/github/importing-your-projects-to-github). 
@@ -54,7 +54,7 @@ The base image for the AnVIL RStudio Bioconductor Docker is the [RStudio Docker]
 
 ### Applications
 
-The AnVIL R Docker contains the [RStudio Server](https://www.rstudio.com/products/rstudio-server/) application which supports a web browser version of RStudio. Additionally, it contains all system dependencies for Bioconductor packages.
+The AnVIL RStudio Docker contains the [RStudio Server](https://www.rstudio.com/products/rstudio-server/) application which supports a web browser version of RStudio. Additionally, it contains all system dependencies for Bioconductor packages.
 
 ### Libraries
 The Bioconductor image inherits all libraries from `anvil-rstudio-base`. The following packages are included in the base image:
@@ -171,7 +171,7 @@ The AnVIL RStudio image is customized to disable the RStudio login screen. Futur
 
 # RStudio Bioconductor Updates
 
-All updates and changes to the current Docker image are listed in the Rstudio image [CHANGELOG.md file](CHANGELOG.md). 
+All updates and changes to the current RStudio Bioconductor Docker image are listed in the Rstudio image [CHANGELOG.md file](CHANGELOG.md). 
 
 
 
