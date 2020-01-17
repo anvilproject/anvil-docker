@@ -1,6 +1,6 @@
-| RStudio Version | Date Updated | Questions or Feedback |
-| --- | --- | --- |
-| 0.0.1 | 10/06/2019 | Adrian Sharma: adrian@broadinstitute.org |
+| RStudio Version | Docker Image URL | Date Updated | Questions or Feedback |
+| --- | --- | --- | --- |
+| 0.0.1 | us.gcr.io/anvil-gcr-public/anvil-rstudio-base:0.0.1 | 10/06/2019 | [Interactive Analysis Team](mailto:workbench-interactive-analysis@broadinstitute.org) |
 
 # AnVIL RStudio Docker Image
 
