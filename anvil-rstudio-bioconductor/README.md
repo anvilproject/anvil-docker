@@ -28,7 +28,7 @@ The AnVIL Rstudio Bioconductor Image can be accessed using the Docker Image URL 
 
 # Using RStudio in Terra
 
-The RStudio Docker can be used in the cloud-based platform Terra. Detailed instructions on accessing the AnVIL RStudio image in Terra can be found in the "[Working with Project-Specific Environments in Terra](https://broadinstitute.zendesk.com/knowledge/articles/360037269472)" documentation in Terra support.
+The RStudio Docker can be used in the cloud-based platform Terra. Detailed instructions on accessing the AnVIL RStudio image in Terra can be found in the "[Working with Project-Specific Environments in Terra](https://support.terra.bio/hc/en-us/articles/360037269472)" documentation in Terra support.
 
 ## Saving RStudio Data
 
@@ -36,7 +36,7 @@ Unlike in a Terra base Docker image, any work performed in a project-specific Do
 
 ### 1. Copying RStudio work to a workspace google bucket
 
-Use the [gsutil](https://cloud.google.com/storage/docs/gsutil) tool to copy files to your workspace google bucket. The "[Working with Project-Specific Environments in Terra](https://broadinstitute.zendesk.com/knowledge/articles/360037269472)" documentation in Terra support demonstrates how to identify the URL for a workspace google bucket. After identifying the workspace google bucket URL, you can copy files to a google bucket by navigating to them in your terminal and using the bash command: 
+Use the [gsutil](https://cloud.google.com/storage/docs/gsutil) tool to copy files to your workspace google bucket. The "[Working with Project-Specific Environments in Terra](https://support.terra.bio/hc/en-us/articles/360037269472)" documentation in Terra support demonstrates how to identify the URL for a workspace google bucket. After identifying the workspace google bucket URL, you can copy files to a google bucket by navigating to them in your terminal and using the bash command: 
 
     gsutil cp ./* gs://<WORKSPACE_BUCKET>
 
