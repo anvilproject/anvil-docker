@@ -1,3 +1,10 @@
+## 0.0.4 - 12/11/2019
+
+- Add env variables R_PLATFORM and R_PLATFORM_BINARY_VERSION.
+- Update vesrsion number of image to `0.0.4`.
+
+Image URL: us.gcr.io/anvil-gcr-public/anvil-rstudio-bioconductor:0.0.4
+
 ## 0.0.3 - 12/11/2019
 
 - Pull Bioconductor packages from location on Github.
