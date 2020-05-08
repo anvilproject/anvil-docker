@@ -1,6 +1,6 @@
 | Latest Image Release | Docker Image URL | Date Updated | Questions or Feedback |
 | --- | --- | --- | --- |
-| 0.0.2 | us.gcr.io/anvil-gcr-public/anvil-rstudio-base:0.0.2 | 11/26/2019 | Contact the [Interactive Analysis Team](mailto:workbench-interactive-analysis@broadinstitute.org) |
+| 0.0.3 | us.gcr.io/anvil-gcr-public/anvil-rstudio-base:0.0.3 | 05/08/2020 | Contact the [Interactive Analysis Team](mailto:workbench-interactive-analysis@broadinstitute.org) |
 
 # AnVIL RStudio Docker Image
 

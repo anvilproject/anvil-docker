@@ -1,4 +1,4 @@
-FROM rocker/tidyverse:3.6.1
+FROM rockerdev/tidyverse:4.0.0-ubuntu18.04
 
 # google-cloud-sdk and python dev libs
 RUN apt-get update && apt-get install -yq --no-install-recommends \
