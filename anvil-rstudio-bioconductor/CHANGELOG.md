@@ -1,3 +1,11 @@
+## 0.0.5 - 05/08/2020
+
+- Update anvil-rstudio-base image to `0.0.3`.
+- This image includes Bioconductor RELEASE_3_11 and R 4.0.0
+- Update vesrsion number of image to `0.0.5`.
+
+Image URL: us.gcr.io/anvil-gcr-public/anvil-rstudio-bioconductor:0.0.5
+
 ## 0.0.4 - 12/11/2019
 
 - Add env variables R_PLATFORM and R_PLATFORM_BINARY_VERSION.

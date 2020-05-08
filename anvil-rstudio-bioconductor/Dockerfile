@@ -1,4 +1,4 @@
-FROM us.gcr.io/anvil-gcr-public/anvil-rstudio-base:0.0.2
+FROM us.gcr.io/anvil-gcr-public/anvil-rstudio-base:0.0.3
 
 # This is to avoid the error
 # 'debconf: unable to initialize frontend: Dialog'
@@ -19,6 +19,7 @@ RUN apt-get update \
 	automake \
 	## This section install libraries
 	libpng-dev \
+	libpcre2-dev \
 	libnetcdf-dev \
 	libhdf5-serial-dev \
 	libfftw3-dev \
@@ -27,11 +28,10 @@ RUN apt-get update \
 	libexempi3 \
 	libxt-dev \
 	libgdal-dev \
-	libjpeg62-turbo-dev \
 	libtiff5-dev \
 	libreadline-dev \
 	libgsl0-dev \
-	libgsl2 \
+	libgslcblas0 \
 	libgtk2.0-dev \
 	libgl1-mesa-dev \
 	libglu1-mesa-dev \
@@ -82,6 +82,16 @@ RUN apt-get update \
 	xfonts-100dpi \
 	xfonts-75dpi \
 	biber \
+	&& apt-get clean \
+	&& rm -rf /var/lib/apt/lists/*
+
+## These two libraries don't install in the above section--WHY?
+RUN apt-get update \
+	&& apt-get -y --no-install-recommends install \
+	default-jdk \
+	libjpeg-dev \
+	libjpeg-turbo8-dev \
+	libjpeg8-dev \
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/*
 
