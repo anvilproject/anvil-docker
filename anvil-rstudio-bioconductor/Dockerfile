@@ -5,7 +5,7 @@ FROM us.gcr.io/anvil-gcr-public/anvil-rstudio-base:0.0.3
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN echo "TERRA_R_PLATFORM='anvil-rstudio-bioconductor'" >> /usr/local/lib/R/etc/Renviron.site \
-    && echo "TERRA_R_PLATFORM_BINARY_VERSION='0.99.0'" >> /usr/local/lib/R/etc/Renviron.site
+    && echo "TERRA_R_PLATFORM_BINARY_VERSION='0.99.1'" >> /usr/local/lib/R/etc/Renviron.site
 
 # Update apt-get
 RUN apt-get update \
