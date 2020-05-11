@@ -1,5 +1,11 @@
+## 0.0.3 - 05/08/2020
 
-## 0.0.2 - 11/26/2016
+- Update to R-4.0.0
+- rockerdev/tidyverse:4.0.0-ubuntu18.04 as the inherting image.
+
+Image URL: us.gcr.io/anvil-gcr-public/anvil-rstudio-base:0.0.3
+
+## 0.0.2 - 11/26/2019
 
 - Add image tab to rocker/tidyverse:3.6.1 instead of "latest".
 - Replace install.packages with BiocManager.
