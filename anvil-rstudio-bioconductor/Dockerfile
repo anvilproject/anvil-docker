@@ -1,4 +1,4 @@
-FROM us.gcr.io/anvil-gcr-public/anvil-rstudio-base:gabriela-test
+FROM us.gcr.io/anvil-gcr-public/anvil-rstudio-base:0.0.4
 
 # This is to avoid the error
 # 'debconf: unable to initialize frontend: Dialog'
@@ -138,6 +138,12 @@ COPY ./deps/xvfb_init /etc/services.d/xvfb/run
 RUN curl -O https://raw.githubusercontent.com/Bioconductor/anvil-docker/master/anvil-rstudio-bioconductor/install.R \
 	&& R -f install.R \
 	&& rm -rf install.R
+
+# At this point, the image has installed all of its R and pip packages so we can switch R_LIBS and PIP_USER back so that user installed packages persist
+RUN mv /usr/local/lib/R/etc/Renviron.site.temp /usr/local/lib/R/etc/Renviron.site
+# Add back other env vars
+RUN echo "TERRA_R_PLATFORM='anvil-rstudio-bioconductor'" >> /usr/local/lib/R/etc/Renviron.site \
+    && echo "TERRA_R_PLATFORM_BINARY_VERSION='0.99.1'" >> /usr/local/lib/R/etc/Renviron.site
 
 USER root
 
