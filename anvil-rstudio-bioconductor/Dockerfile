@@ -1,8 +1,12 @@
-FROM us.gcr.io/anvil-gcr-public/anvil-rstudio-base:0.0.3
+FROM us.gcr.io/anvil-gcr-public/anvil-rstudio-base:gabriela-test
 
 # This is to avoid the error
 # 'debconf: unable to initialize frontend: Dialog'
 ENV DEBIAN_FRONTEND noninteractive
+
+# At this point in the script, Renviron contains R_LIBS='/home/rstudio/packages' and 'PIP_USER=true' however we do not want packages installed
+# by this image to persist so temporarily remove the two env vars
+RUN mv /usr/local/lib/R/etc/Renviron.site /usr/local/lib/R/etc/Renviron.site.temp
 
 RUN echo "TERRA_R_PLATFORM='anvil-rstudio-bioconductor'" >> /usr/local/lib/R/etc/Renviron.site \
     && echo "TERRA_R_PLATFORM_BINARY_VERSION='0.99.1'" >> /usr/local/lib/R/etc/Renviron.site
