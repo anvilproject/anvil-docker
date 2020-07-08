@@ -1,5 +1,9 @@
 FROM rockerdev/tidyverse:4.0.0-ubuntu18.04
 
+# We are mounting a persistent disk to directory /home/rstudio - this image and its derived image (anvil-rstudio-bioconductor)
+# cannot install to this directory because installations will be wiped after we mount the PD (mounting happens after the image
+# is built and before we docker compose the image)
+
 # google-cloud-sdk and python dev libs
 RUN apt-get update && apt-get install -yq --no-install-recommends \
     gnupg \
