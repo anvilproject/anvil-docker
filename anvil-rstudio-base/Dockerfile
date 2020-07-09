@@ -1,5 +1,9 @@
 FROM rockerdev/tidyverse:4.0.0-ubuntu18.04
 
+# We are mounting a persistent disk to directory /home/rstudio - this image and its derived image (anvil-rstudio-bioconductor)
+# cannot install to this directory because installations will be wiped after we mount the PD (mounting happens after the image
+# is built and before we docker compose the image)
+
 # google-cloud-sdk and python dev libs
 RUN apt-get update && apt-get install -yq --no-install-recommends \
     gnupg \
@@ -17,8 +21,6 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
  && rm -rf /var/lib/apt/lists/* \
  && curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py \
  && python get-pip.py
-
-## TODO: Futureproof the location of the installed packages, make it analogous to the jupyter image and install packages under /home/rstudio/.rpackages
 
 # google-cloud R packages
 RUN R -e "BiocManager::install(c( \
@@ -38,3 +40,6 @@ RUN sed -i 's/alwaysSaveHistory="0"/alwaysSaveHistory="1"/g'  $RSTUDIO_USERSETTI
 && sed -i 's/saveAction="0"/saveAction="1"/g' $RSTUDIO_USERSETTING
 
 EXPOSE $RSTUDIO_PORT
+
+RUN echo "R_LIBS='/home/rstudio/packages'" >>  /usr/local/lib/R/etc/Renviron.site \
+    && echo "PIP_USER=true" >>  /usr/local/lib/R/etc/Renviron.site

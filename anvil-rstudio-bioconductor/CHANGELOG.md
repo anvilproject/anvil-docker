@@ -1,3 +1,10 @@
+## 0.0.6 - 07/01/2020
+
+- User installed R and pip packages will now persist between runtimes
+- Update vesrsion number of image to `0.0.6`.
+
+Image URL: us.gcr.io/anvil-gcr-public/anvil-rstudio-bioconductor:0.0.6
+
 ## 0.0.5 - 05/08/2020
 
 - Update anvil-rstudio-base image to `0.0.3`.

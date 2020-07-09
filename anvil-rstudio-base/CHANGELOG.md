@@ -1,3 +1,9 @@
+## 0.0.4 - 07/01/2020
+
+- User installed R and pip packages will now persist between runtimes
+
+Image URL: us.gcr.io/anvil-gcr-public/anvil-rstudio-base:0.0.4
+
 ## 0.0.3 - 05/08/2020
 
 - Update to R-4.0.0
