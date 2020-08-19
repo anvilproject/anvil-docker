@@ -1,3 +1,12 @@
+## 0.0.5 - 08/19/2020
+
+- Update base image to rocker/tidyverse:4.0.2
+- Update R version to 4.0.2
+- The version of Ubuntu is now 20.04 because of the update to
+  rocker/tidyverse:4.0.2. This is a shift from the 18.04 image.
+
+Image URL: us.gcr.io/anvil-gcr-public/anvil-rstudio-base:0.0.5
+
 ## 0.0.4 - 07/01/2020
 
 - User installed R and pip packages will now persist between runtimes
