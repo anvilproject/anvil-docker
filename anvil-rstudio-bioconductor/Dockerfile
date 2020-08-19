@@ -1,15 +1,11 @@
-FROM us.gcr.io/anvil-gcr-public/anvil-rstudio-base:0.0.4
+FROM us.gcr.io/anvil-gcr-public/anvil-rstudio-base:0.0.5
 
 # This is to avoid the error
 # 'debconf: unable to initialize frontend: Dialog'
 ENV DEBIAN_FRONTEND noninteractive
 
-# At this point in the script, Renviron contains R_LIBS='/home/rstudio/packages' and 'PIP_USER=true' however we do not want packages installed
-# by this image to persist so temporarily remove the two env vars
-RUN mv /usr/local/lib/R/etc/Renviron.site /usr/local/lib/R/etc/Renviron.site.temp
-
-RUN echo "TERRA_R_PLATFORM='anvil-rstudio-bioconductor'" >> /usr/local/lib/R/etc/Renviron.site \
-    && echo "TERRA_R_PLATFORM_BINARY_VERSION='0.99.1'" >> /usr/local/lib/R/etc/Renviron.site
+ARG TERRA_R_PLATFORM_BINARY_VERSION=1.0.0
+ARG TERRA_R_PLATFORM='anvil-rstudio-biconductor'
 
 # Update apt-get
 RUN apt-get update \
@@ -29,7 +25,6 @@ RUN apt-get update \
 	libfftw3-dev \
 	libopenbabel-dev \
 	libopenmpi-dev \
-	libexempi3 \
 	libxt-dev \
 	libgdal-dev \
 	libtiff5-dev \
@@ -45,7 +40,7 @@ RUN apt-get update \
 	libbz2-dev \
 	libxpm-dev \
 	liblapack-dev \
-	libv8-3.14-dev \
+	libv8-dev \
 	libgtkmm-2.4-dev \
 	libmpfr-dev \
 	libudunits2-dev \
@@ -58,6 +53,7 @@ RUN apt-get update \
 	libpoppler-cpp-dev \
 	libprotobuf-dev \
 	libperl-dev \
+	libglpk-dev \
 	libz-dev \
 	liblzma-dev \
 	## software - perl extentions and modules
@@ -73,7 +69,7 @@ RUN apt-get update \
 	mpi-default-bin \
 	openmpi-common \
 	openmpi-doc \
-	tcl8.5-dev \
+	tcl8.6-dev \
 	tk-dev \
 	openjdk-8-jdk \
 	imagemagick \
@@ -101,7 +97,6 @@ RUN apt-get update \
 
 ## Python installations
 RUN apt-get update \
-	&& apt-get -y --no-install-recommends install python-dev \
 	&& pip install wheel \
 	## Install sklearn and pandas on python
 	&& pip install sklearn \
@@ -111,7 +106,7 @@ RUN apt-get update \
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/*
 
-# Install libsbml and xvfb
+# Install libsbml
 RUN cd /tmp \
 	## libsbml
 	&& curl -O https://s3.amazonaws.com/linux-provisioning/libSBML-5.10.2-core-src.tar.gz \
@@ -120,11 +115,6 @@ RUN cd /tmp \
 	&& ./configure --enable-layout \
 	&& make \
 	&& make install \
-	## xvfb install
-	&& cd /tmp \
-	&& curl -SL https://github.com/just-containers/s6-overlay/releases/download/v1.21.8.0/s6-overlay-amd64.tar.gz | tar -xzC / \
-	&& apt-get update && apt-get install -y --no-install-recommends xvfb \
-	&& mkdir -p /etc/services.d/xvfb/ \
 	## Clean libsbml, and tar.gz files
 	&& rm -rf /tmp/libsbml-5.10.2 \
 	&& rm -rf /tmp/libSBML-5.10.2-core-src.tar.gz \
@@ -132,18 +122,13 @@ RUN cd /tmp \
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/*
 
-COPY ./deps/xvfb_init /etc/services.d/xvfb/run
-
 # Install Bioconductor packages
 RUN curl -O https://raw.githubusercontent.com/Bioconductor/anvil-docker/master/anvil-rstudio-bioconductor/install.R \
 	&& R -f install.R \
 	&& rm -rf install.R
 
-# At this point, the image has installed all of its R and pip packages so we can switch R_LIBS and PIP_USER back so that user installed packages persist
-RUN mv /usr/local/lib/R/etc/Renviron.site.temp /usr/local/lib/R/etc/Renviron.site
-# Add back other env vars
-RUN echo "TERRA_R_PLATFORM='anvil-rstudio-bioconductor'" >> /usr/local/lib/R/etc/Renviron.site \
-    && echo "TERRA_R_PLATFORM_BINARY_VERSION='0.99.1'" >> /usr/local/lib/R/etc/Renviron.site
+ENV TERRA_R_PLATFORM_BINARY_VERSION=$TERRA_R_PLATFORM_BINARY_VERSION
+ENV TERRA_R_PLATFORM=$TERRA_R_PLATFORM
 
 USER root
 

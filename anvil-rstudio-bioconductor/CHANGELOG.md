@@ -1,3 +1,15 @@
+## 0.0.7 - 08/19/2020
+
+- Update base anvil-rstudio-base image to 0.0.5
+- Update base R version to 4.0.2
+- Fix the way the ENV variables are set for TERRA_R_PLATFORM and
+  TERRA_R_PLATFORM_BINARY_VERSION.
+- Remove xvfb dependency as it is not needed anymore.
+- The base image is no longer on ubuntu 18.04 it is on 20.04.
+- Update version number of image to `0.0.7`.
+
+Image URL: us.gcr.io/anvil-gcr-public/anvil-rstudio-bioconductor:0.0.7
+
 ## 0.0.6 - 07/01/2020
 
 - User installed R and pip packages will now persist between runtimes

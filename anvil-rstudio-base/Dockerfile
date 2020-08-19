@@ -1,4 +1,4 @@
-FROM rockerdev/tidyverse:4.0.0-ubuntu18.04
+FROM rocker/tidyverse:4.0.2
 
 # We are mounting a persistent disk to directory /home/rstudio - this image and its derived image (anvil-rstudio-bioconductor)
 # cannot install to this directory because installations will be wiped after we mount the PD (mounting happens after the image
@@ -9,10 +9,9 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
     gnupg \
     curl \
     lsb-release \
-    libpython-dev \
-    libpython3-dev \
- && export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)" \
- && echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" > /etc/apt/sources.list.d/google-cloud-sdk.list \
+    python-dev \
+    python3-dev \
+ && echo "deb http://packages.cloud.google.com/apt cloud-sdk main" > /etc/apt/sources.list.d/google-cloud-sdk.list \
  && curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - \
  && apt-get update \
  && apt-get install -yq --no-install-recommends \
