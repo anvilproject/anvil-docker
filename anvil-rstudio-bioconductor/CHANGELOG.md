@@ -1,3 +1,10 @@
+## 0.0.7 - 10/27/2020
+
+- Fixed an RStudio cookie setting causing issues with recent rocker versions on Terra
+   - See https://broadworkbench.atlassian.net/browse/IA-2279
+
+Image URL: us.gcr.io/anvil-gcr-public/anvil-rstudio-bioconductor:0.0.7
+
 ## 0.0.6 - 07/01/2020
 
 - User installed R and pip packages will now persist between runtimes

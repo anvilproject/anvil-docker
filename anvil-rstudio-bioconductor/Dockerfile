@@ -1,4 +1,4 @@
-FROM us.gcr.io/anvil-gcr-public/anvil-rstudio-base:0.0.4
+FROM us.gcr.io/anvil-gcr-public/anvil-rstudio-base:0.0.5
 
 # This is to avoid the error
 # 'debconf: unable to initialize frontend: Dialog'
