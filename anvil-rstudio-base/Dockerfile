@@ -26,7 +26,8 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
 RUN R -e "BiocManager::install(c( \
     'DataBiosphere/Ronaldo', \
     'bigrquery',  \
-    'googleCloudStorageR'))"
+    'googleCloudStorageR', \
+    'shiny'))"
 
 ENV RSTUDIO_PORT 8001
 ENV RSTUDIO_HOME /etc/rstudio

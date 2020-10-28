@@ -1,3 +1,10 @@
+## 0.0.5 - 10/28/2020
+
+- Install shiny as part of the base image to fix RShiny app launching
+   - See: https://broadworkbench.atlassian.net/browse/IA-2235
+
+Image URL: us.gcr.io/anvil-gcr-public/anvil-rstudio-base:0.0.5
+
 ## 0.0.4 - 07/01/2020
 
 - User installed R and pip packages will now persist between runtimes
