@@ -1,3 +1,12 @@
+## 0.0.5 - 11/03/2020
+
+- Deprecation notice. The `anvil-rstudio-base:0.0.5` is going to be
+  deprecated and doesn't offer value. The only `rstudio` image on the
+  anvil maintained by the Bioconductor team is going to be 
+  `anvil-rstudio-bioconductor`.
+
+- DO NOT update anvil-rstudio-base anymore.
+
 ## 0.0.5 - 10/28/2020
 
 - Install shiny as part of the base image to fix RShiny app launching

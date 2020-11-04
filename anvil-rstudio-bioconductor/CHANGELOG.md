@@ -1,3 +1,11 @@
+## 0.0.8 - 11/4/2020
+
+- Update to R 4.0.3 and Bioc 3.12
+- Image is now based on 'bioconductor/bioconductor_docker' stack and not
+  on rocker/tidyverse
+
+Image URL: us.gcr.io/anvil-gcr-public/anvil-rstudio-bioconductor:0.0.8
+
 ## 0.0.7 - 10/28/2020
 
 - Install shiny as part of the base image to fix RShiny app launching
