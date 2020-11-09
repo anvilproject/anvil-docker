@@ -1,151 +1,38 @@
-FROM us.gcr.io/anvil-gcr-public/anvil-rstudio-base:0.0.5
+FROM bioconductor/bioconductor_docker:RELEASE_3_12
 
-# This is to avoid the error
-# 'debconf: unable to initialize frontend: Dialog'
-ENV DEBIAN_FRONTEND noninteractive
+ARG TERRA_R_PLATFORM=anvil-rstudio-bioconductor
+ARG TERRA_R_PLATFORM_BINARY_VERSION=0.99.1
 
-# At this point in the script, Renviron contains R_LIBS='/home/rstudio/packages' and 'PIP_USER=true' however we do not want packages installed
-# by this image to persist so temporarily remove the two env vars
-RUN mv /usr/local/lib/R/etc/Renviron.site /usr/local/lib/R/etc/Renviron.site.temp
+RUN apt-get update && apt-get install -yq --no-install-recommends \
+    gnupg \
+    lsb-release \
+# && export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)" \
+ && echo "deb http://packages.cloud.google.com/apt cloud-sdk main" > /etc/apt/sources.list.d/google-cloud-sdk.list \
+ && curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - \
+ && apt-get update \
+ && apt-get install -yq --no-install-recommends \
+    google-cloud-sdk \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
 
-RUN echo "TERRA_R_PLATFORM='anvil-rstudio-bioconductor'" >> /usr/local/lib/R/etc/Renviron.site \
-    && echo "TERRA_R_PLATFORM_BINARY_VERSION='0.99.1'" >> /usr/local/lib/R/etc/Renviron.site
+# google-cloud R packages
+RUN R -e "BiocManager::install(c('DataBiosphere/Ronaldo', 'shiny', 'bigrquery', 'googleCloudStorageR', 'tidyverse'))"
 
-# Update apt-get
-RUN apt-get update \
-	&& apt-get install -y --no-install-recommends apt-utils \
-	&& apt-get install -y dselect \
-	&& dselect update \
-	&& apt-get install -y --no-install-recommends \
-	pkg-config \
-	fortran77-compiler \
-	byacc \
-	automake \
-	## This section install libraries
-	libpng-dev \
-	libpcre2-dev \
-	libnetcdf-dev \
-	libhdf5-serial-dev \
-	libfftw3-dev \
-	libopenbabel-dev \
-	libopenmpi-dev \
-	libexempi3 \
-	libxt-dev \
-	libgdal-dev \
-	libtiff5-dev \
-	libreadline-dev \
-	libgsl0-dev \
-	libgslcblas0 \
-	libgtk2.0-dev \
-	libgl1-mesa-dev \
-	libglu1-mesa-dev \
-	libgmp3-dev \
-	libhdf5-dev \
-	libncurses-dev \
-	libbz2-dev \
-	libxpm-dev \
-	liblapack-dev \
-	libv8-3.14-dev \
-	libgtkmm-2.4-dev \
-	libmpfr-dev \
-	libudunits2-dev \
-	libmodule-build-perl \
-	libapparmor-dev \
-	libgeos-dev \
-	libprotoc-dev \
-	librdf0-dev \
-	libmagick++-dev \
-	libpoppler-cpp-dev \
-	libprotobuf-dev \
-	libperl-dev \
-	libz-dev \
-	liblzma-dev \
-	## software - perl extentions and modules
-	libarchive-extract-perl \
-	libfile-copy-recursive-perl \
-	libcgi-pm-perl \
-	libdbi-perl \
-	libdbd-mysql-perl \
-	libxml-simple-perl \
-	## Databases and other software
-	sqlite \
-	openmpi-bin \
-	mpi-default-bin \
-	openmpi-common \
-	openmpi-doc \
-	tcl8.5-dev \
-	tk-dev \
-	openjdk-8-jdk \
-	imagemagick \
-	tabix \
-	ggobi \
-	graphviz \
-	protobuf-compiler \
-	jags \
-	## Additional resources
-	xfonts-100dpi \
-	xfonts-75dpi \
-	biber \
-	&& apt-get clean \
-	&& rm -rf /var/lib/apt/lists/*
+ENV RSTUDIO_PORT 8001
+ENV RSTUDIO_HOME /etc/rstudio
+ENV TERRA_R_PLATFORM=$TERRA_R_PLATFORM
+ENV TERRA_R_PLATFORM_BINARY_VERSION=$TERRA_R_PLATFORM_BINARY_VERSION
+ENV RSTUDIO_USERSETTING /home/rstudio/.rstudio/monitored/user-settings/user-settings
 
-## These two libraries don't install in the above section--WHY?
-RUN apt-get update \
-	&& apt-get -y --no-install-recommends install \
-	default-jdk \
-	libjpeg-dev \
-	libjpeg-turbo8-dev \
-	libjpeg8-dev \
-	&& apt-get clean \
-	&& rm -rf /var/lib/apt/lists/*
+ADD rserver.conf $RSTUDIO_HOME/rserver.conf
 
-## Python installations
-RUN apt-get update \
-	&& apt-get -y --no-install-recommends install python-dev \
-	&& pip install wheel \
-	## Install sklearn and pandas on python
-	&& pip install sklearn \
-	pandas \
-	pyyaml \
-	cwltool \
-	&& apt-get clean \
-	&& rm -rf /var/lib/apt/lists/*
+RUN sed -i 's/alwaysSaveHistory="0"/alwaysSaveHistory="1"/g'  $RSTUDIO_USERSETTING \
+ && sed -i 's/loadRData="0"/loadRData="1"/g' $RSTUDIO_USERSETTING \
+ && sed -i 's/saveAction="0"/saveAction="1"/g' $RSTUDIO_USERSETTING
 
-# Install libsbml and xvfb
-RUN cd /tmp \
-	## libsbml
-	&& curl -O https://s3.amazonaws.com/linux-provisioning/libSBML-5.10.2-core-src.tar.gz \
-	&& tar zxf libSBML-5.10.2-core-src.tar.gz \
-	&& cd libsbml-5.10.2 \
-	&& ./configure --enable-layout \
-	&& make \
-	&& make install \
-	## xvfb install
-	&& cd /tmp \
-	&& curl -SL https://github.com/just-containers/s6-overlay/releases/download/v1.21.8.0/s6-overlay-amd64.tar.gz | tar -xzC / \
-	&& apt-get update && apt-get install -y --no-install-recommends xvfb \
-	&& mkdir -p /etc/services.d/xvfb/ \
-	## Clean libsbml, and tar.gz files
-	&& rm -rf /tmp/libsbml-5.10.2 \
-	&& rm -rf /tmp/libSBML-5.10.2-core-src.tar.gz \
-	## apt-get clean and remove cache
-	&& apt-get clean \
-	&& rm -rf /var/lib/apt/lists/*
+EXPOSE $RSTUDIO_PORT
 
-COPY ./deps/xvfb_init /etc/services.d/xvfb/run
-
-# Install Bioconductor packages
-RUN curl -O https://raw.githubusercontent.com/Bioconductor/anvil-docker/master/anvil-rstudio-bioconductor/install.R \
-	&& R -f install.R \
-	&& rm -rf install.R
-
-# At this point, the image has installed all of its R and pip packages so we can switch R_LIBS and PIP_USER back so that user installed packages persist
-RUN mv /usr/local/lib/R/etc/Renviron.site.temp /usr/local/lib/R/etc/Renviron.site
-# Add back other env vars
-RUN echo "TERRA_R_PLATFORM='anvil-rstudio-bioconductor'" >> /usr/local/lib/R/etc/Renviron.site \
-    && echo "TERRA_R_PLATFORM_BINARY_VERSION='0.99.1'" >> /usr/local/lib/R/etc/Renviron.site
-
-USER root
-
-# Init command for s6-overlay
-CMD ["/init"]
+RUN echo "R_LIBS='/home/rstudio/packages'" >>  /usr/local/lib/R/etc/Renviron.site \
+ && echo "PIP_USER=true" >>  /usr/local/lib/R/etc/Renviron.site \
+ && echo TERRA_R_PLATFORM=${TERRA_R_PLATFORM} >> /usr/local/lib/R/etc/Renviron.site \
+ && echo TERRA_R_PLATFORM_BINARY_VERSION=${TERRA_R_PLATFORM_BINARY_VERSION} >> /usr/local/lib/R/etc/Renviron.site

@@ -1,5 +1,6 @@
 | Latest Image Release | Docker Image URL |Date Updated | Questions or Feedback | 
 | --- | --- | --- | --- |
+| 0.0.8 | us.gcr.io/anvil-gcr-public/anvil-rstudio-bioconductor:0.0.8 | 11/04/2020 | Contact the [Bioconductor Team](mailto:nitesh.turaga@roswellpark.org) |
 | 0.0.7 | us.gcr.io/anvil-gcr-public/anvil-rstudio-bioconductor:0.0.7 | 10/28/2020 | Contact the [Bioconductor Team](mailto:nitesh.turaga@roswellpark.org) |
 | 0.0.6 | us.gcr.io/anvil-gcr-public/anvil-rstudio-bioconductor:0.0.6 | 07/01/2020 | Contact the [Bioconductor Team](mailto:nitesh.turaga@roswellpark.org) |
 
@@ -51,7 +52,7 @@ You can install Git on RStudio and use it to [check code into GitHub](https://he
 
 ### Base Image
 
-The base image for the AnVIL RStudio Bioconductor Docker is the [RStudio Docker](https://github.com/anvilproject/anvil-docker/tree/master/anvil-rstudio-base). This contains the [rocker/tidyverse](https://hub.docker.com/r/rocker/tidyverse/) image provided by the [Rocker Project](https://www.rocker-project.org/), as well as tidyverse and devtools.
+The base image for the AnVIL RStudio Bioconductor Docker is the [bioconductor_docker](https://github.com/Bioconductor/bioconductor_docker). This contains the [rocker/rstudio](https://hub.docker.com/r/rocker/rstudio/) image provided by the [Rocker Project](https://www.rocker-project.org/). All the system dependencies are inherited from the bioconductor image.
 
 ### Applications
 
@@ -85,90 +86,6 @@ The AnVIL RStudio image is customized to disable the RStudio login screen. Futur
 
 * RStudio hooks to refresh credentials 
 * An RStudio auto pause after inactivity
-
-### Dependencies
-**System Dependencies**
-* fortran77-compiler
-* byacc
-* automake
-* libpng-dev
-* libnetcdf-dev
-* libhdf5-serial-dev
-* libfftw3-dev
-* libopenbabel-dev
-* libopenmpi-dev
-* libexempi3
-* libxt-dev
-* libgdal-dev
-* libjpeg62-turbo-dev
-* libtiff5-dev
-* libreadline-dev
-* libgsl0-dev
-* libgsl2
-* libgtk2.0-dev
-* libgl1-mesa-dev
-* libglu1-mesa-dev
-* libgmp3-dev
-* libhdf5-dev
-* libncurses-dev
-* libbz2-dev
-* libxpm-dev
-* liblapack-dev
-* libv8-3.14-dev
-* libgtkmm-2.4-dev
-* libmpfr-dev
-* libudunits2-dev
-* libmodule-build-perl
-* libapparmor-dev
-* libgeos-dev
-* libprotoc-dev
-* librdf0-dev
-* libmagick++-dev
-* libpoppler-cpp-dev
-* libprotobuf-dev
-* libperl-dev
-* libz-dev
-* liblzma-dev
-
-**Bioconductor Dependencies**
-* libsbml
-* xvfb
-
-**Perl Dependencies**
-* libarchive-extract-perl
-* libfile-copy-recursive-perl
-* libcgi-pm-perl
-* libdbi-perl
-* libdbd-mysql-perl
-* libxml-simple-perl
-
-**Python Dependencies**
-* python-dev
-* sklearn
-* pandas
-* pyyaml
-* cwltool
-
-**Additional Dependencies**
-* xfonts-100dpi
-* xfonts-75dpi
-* biber
-
-**Databases and Other Software**
-* sqlite
-* openmpi-bin
-* mpi-default-bin
-* openmpi-common
-* openmpi-doc
-* tcl8.5-dev
-* tk-dev
-* openjdk-8-jdk
-* imagemagick
-* tabix
-* ggobi
-* graphviz
-* protobuf-compiler
-* jags
 
 # RStudio Bioconductor Updates
 
