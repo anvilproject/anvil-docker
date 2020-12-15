@@ -1,3 +1,13 @@
+## 0.0.9 - 12/15/2020
+
+- Update to R 4.0.3 and Bioc 3.12
+- Image is now based on 'bioconductor/bioconductor_docker:RELEASE_3_12'
+  version '3.12.30'.
+- This verison adds the dependency 'libgit2-dev' which is essential for
+  packages like 'gert' and 'use_this'.
+
+Image URL: us.gcr.io/anvil-gcr-public/anvil-rstudio-bioconductor:0.0.9
+
 ## 0.0.8 - 11/4/2020
 
 - Update to R 4.0.3 and Bioc 3.12
