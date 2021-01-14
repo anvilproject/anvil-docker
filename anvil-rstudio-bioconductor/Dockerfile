@@ -26,6 +26,4 @@ RUN sed -i 's/alwaysSaveHistory="0"/alwaysSaveHistory="1"/g'  $RSTUDIO_USERSETTI
 
 EXPOSE $RSTUDIO_PORT
 
-RUN echo "R_LIBS=`R CMD printenv R_LIBS_USER`-${BIOCONDUCTOR_VERSION}:\${R_LIBS}" >> /usr/local/lib/R/etc/Renviron.site \
- && echo "PIP_USER=true" >>  /usr/local/lib/R/etc/Renviron.site
-
+RUN echo "PIP_USER=true" >>  /usr/local/lib/R/etc/Renviron.site
