@@ -26,4 +26,6 @@ RUN sed -i 's/alwaysSaveHistory="0"/alwaysSaveHistory="1"/g'  $RSTUDIO_USERSETTI
 
 EXPOSE $RSTUDIO_PORT
 
-RUN echo "PIP_USER=true" >>  /usr/local/lib/R/etc/Renviron.site
+COPY scripts ${RSTUDIO_HOME}/scripts
+RUN find ${RSTUDIO_HOME}/scripts -name '*.sh' -type f | xargs chmod +x \
+ && echo "PIP_USER=true" >>  /usr/local/lib/R/etc/Renviron.site
