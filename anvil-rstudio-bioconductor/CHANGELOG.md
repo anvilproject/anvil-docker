@@ -9,9 +9,7 @@
 - Includes a new way PD's save packages in folders under
   /home/rstudio/R/x86_64-pc-linux-gnu-library/4.0-3.12. The directory
   4.0-3.12 will host the packages under that image and attached to the
-  .libPaths() inside the R session. These code changes live in the
-  http/src/main/resources/init-resources/gce-init.sh of the Leonardo
-  code base https://github.com/DataBiosphere/leonardo.
+  .libPaths() inside the R session. These changes will live in the set_up_package_dir.sh script.
   
 Image URL: us.gcr.io/anvil-gcr-public/anvil-rstudio-bioconductor:0.0.10
 
