@@ -1,3 +1,18 @@
+## 0.0.10 - 1/15/2020
+
+- This version update is a precursor to the image which will
+  eventually follow Bioconductor versioning. The next update will be
+  based on the version of Bioconductor 3.12.0.
+  
+- It removes all the Env variables which are not required.
+
+- Includes a new way PD's save packages in folders under
+  /home/rstudio/R/x86_64-pc-linux-gnu-library/4.0-3.12. The directory
+  4.0-3.12 will host the packages under that image and attached to the
+  .libPaths() inside the R session. These changes will live in the set_up_package_dir.sh script.
+  
+Image URL: us.gcr.io/anvil-gcr-public/anvil-rstudio-bioconductor:0.0.10
+
 ## 0.0.9 - 12/15/2020
 
 - Update to R 4.0.3 and Bioc 3.12
