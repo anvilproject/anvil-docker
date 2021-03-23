@@ -61,7 +61,7 @@ The base image for the AnVIL RStudio Bioconductor Docker is the [bioconductor_do
 The AnVIL RStudio Docker contains the [RStudio Server](https://www.rstudio.com/products/rstudio-server/) application which supports a web browser version of RStudio. Additionally, it contains all system dependencies for Bioconductor packages.
 
 ### Libraries
-The Bioconductor image inherits all libraries from `anvil-rstudio-base`. The following packages are included in the base image:
+The Bioconductor image inherits all libraries from `bioconductor/bioconductor_docker`. The following packages are included in the base image:
 * [tidyverse](https://www.tidyverse.org/packages/): a suite of packages designed for data sciences 
 * [google-cloud-sdk](https://cloud.google.com/sdk/): tools for the google cloud platform
 * [googleCloudStorageR](http://code.markedmondson.me/googleCloudStorageR/): an R library for interacting with google cloud storage
@@ -70,17 +70,6 @@ The Bioconductor image inherits all libraries from `anvil-rstudio-base`. The fol
 
 The following are Bioconductor Docker-specific packages:
 * [BiocManager](https://www.bioconductor.org/install/): a tool for installing Bioconductor packages
-* [SingleCellExperiment](): an S4 container for single-cell analyses
-* [GenomicFeatures](https://www.bioconductor.org/packages/release/bioc/html/GenomicFeatures.html): tools for manipulating transcript annotations
-* [GenomicAlignments](https://www.bioconductor.org/help/search/index.html?q=GenomicAlignments/): containers for storing short genomic alignments
-* [ShortRead](https://www.bioconductor.org/packages/release/bioc/html/ShortRead.html): tools for manipulating and assessing FASTQs
-* [DESeq2](https://www.bioconductor.org/help/search/index.html?q=DESeq2/): tools for RNAseq analyses
-* [AnnotationHub](https://www.bioconductor.org/packages/release/bioc/html/AnnotationHub.html): resources for gene annotation
-* [ExperimentHub](https://www.bioconductor.org/packages/release/bioc/html/ExperimentHub.html): tools for accessing curated experiments
-* [ensembldb](https://www.bioconductor.org/packages/release/bioc/html/ensembldb.html): tools for making Ensembl-based annotations
-* [scRNAseq](https://www.bioconductor.org/packages/release/data/experiment/html/scRNAseq.html): a collection of public, single-cell RNAseq datasets
-* [scran](https://www.bioconductor.org/packages/release/bioc/html/scran.html): tools for single-cell analyses
-* [Rtsne](https://cran.r-project.org/web/packages/Rtsne/index.html): an R package for making tSNE plots
 
 ### Customizations
 

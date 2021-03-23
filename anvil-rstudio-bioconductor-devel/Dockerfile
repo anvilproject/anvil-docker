@@ -1,8 +1,5 @@
 FROM bioconductor/bioconductor_docker:devel
 
-ARG TERRA_R_PLATFORM=bioconductor-docker
-ARG TERRA_R_PLATFORM_BINARY_VERSION=0.99.1
-
 RUN apt-get update && apt-get install -yq --no-install-recommends \
     gnupg \
     lsb-release \
@@ -19,8 +16,6 @@ RUN R -e "BiocManager::install(c('DataBiosphere/Ronaldo', 'shiny', 'bigrquery', 
 
 ENV RSTUDIO_PORT 8001
 ENV RSTUDIO_HOME /etc/rstudio
-ENV TERRA_R_PLATFORM=$TERRA_R_PLATFORM
-ENV TERRA_R_PLATFORM_BINARY_VERSION=$TERRA_R_PLATFORM_BINARY_VERSION
 ENV RSTUDIO_USERSETTING /home/rstudio/.rstudio/monitored/user-settings/user-settings
 
 ADD rserver.conf $RSTUDIO_HOME/rserver.conf
@@ -31,7 +26,6 @@ RUN sed -i 's/alwaysSaveHistory="0"/alwaysSaveHistory="1"/g'  $RSTUDIO_USERSETTI
 
 EXPOSE $RSTUDIO_PORT
 
-RUN echo "R_LIBS='/home/rstudio/packages'" >>  /usr/local/lib/R/etc/Renviron.site \
- && echo "PIP_USER=true" >>  /usr/local/lib/R/etc/Renviron.site \
- && echo TERRA_R_PLATFORM=${TERRA_R_PLATFORM} >> /usr/local/lib/R/etc/Renviron.site \
- && echo TERRA_R_PLATFORM_BINARY_VERSION=${TERRA_R_PLATFORM_BINARY_VERSION} >> /usr/local/lib/R/etc/Renviron.site
+COPY scripts ${RSTUDIO_HOME}/scripts
+RUN find ${RSTUDIO_HOME}/scripts -name '*.sh' -type f | xargs chmod +x \
+ && echo "PIP_USER=true" >>  /usr/local/lib/R/etc/Renviron.site
