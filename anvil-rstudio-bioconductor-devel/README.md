@@ -1,6 +1,6 @@
 | Development Image Release | Docker Image URL |Date Updated | Questions or Feedback | 
 | --- | --- | --- | --- |
-| 0.0.1 | us.gcr.io/anvil-gcr-public/anvil-rstudio-bioconductor-devel:0.0.1 | 03/23/2021 | Contact the [Bioconductor Team](mailto:nturaga.bioc@gmail.com) |
+| 0.0.1 | us.gcr.io/anvil-gcr-public/anvil-rstudio-bioconductor-devel:3.13.0 | 03/23/2021 | Contact the [Bioconductor Team](mailto:nturaga.bioc@gmail.com) |
 
 # RStudio-Bioconductor Docker Image
 
