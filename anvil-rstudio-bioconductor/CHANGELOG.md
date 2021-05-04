@@ -1,3 +1,11 @@
+## 0.0.11 - 5/4/2021
+
+- Update in base image `biconductor/bioconductor_docker:RELEASE_3_12`. 
+
+- rebuild of the entire stack
+
+Image URL: us.gcr.io/anvil-gcr-public/anvil-rstudio-bioconductor:0.0.11
+
 ## 0.0.10 - 1/15/2020
 
 - This version update is a precursor to the image which will
