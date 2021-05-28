@@ -14,6 +14,9 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
 # google-cloud R packages
 RUN R -e "BiocManager::install(c('DataBiosphere/Ronaldo', 'shiny', 'bigrquery', 'googleCloudStorageR', 'tidyverse'))"
 
+RUN pip3 -V \
+    && pip3 install crcmod
+
 ENV RSTUDIO_PORT 8001
 ENV RSTUDIO_HOME /etc/rstudio
 ENV RSTUDIO_USERSETTING /home/rstudio/.rstudio/monitored/user-settings/user-settings
