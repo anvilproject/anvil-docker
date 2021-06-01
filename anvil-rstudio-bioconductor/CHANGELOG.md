@@ -1,3 +1,13 @@
+## 3.13.0 - 5/24/2021
+
+- Launch of Bioconductor release 3.13 image
+
+- Update in base image `biconductor/bioconductor_docker:RELEASE_3_13`. 
+
+- Change versioning scheme to reflect Bioconductor version.
+
+Image URL: us.gcr.io/anvil-gcr-public/anvil-rstudio-bioconductor:3.13.0
+
 ## 0.0.11 - 5/4/2021
 
 - Update in base image `biconductor/bioconductor_docker:RELEASE_3_12`. 

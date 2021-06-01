@@ -1,4 +1,4 @@
-FROM bioconductor/bioconductor_docker:RELEASE_3_12
+FROM bioconductor/bioconductor_docker:RELEASE_3_13
 
 RUN apt-get update && apt-get install -yq --no-install-recommends \
     gnupg \
@@ -10,6 +10,9 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
     google-cloud-sdk \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
+
+RUN pip3 -V \
+    && pip3 install crcmod
 
 # google-cloud R packages
 RUN R -e "BiocManager::install(c('DataBiosphere/Ronaldo', 'shiny', 'bigrquery', 'googleCloudStorageR', 'tidyverse'))"
