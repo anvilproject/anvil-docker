@@ -1,4 +1,4 @@
-## 3.14.0 - 03/23/202`
+## 3.14.0 - 06/01/2021
 
 - Extends bioconductor/biconductor_docker:devel image so it's available for the anvil.
 - The the devel docker image makes bioconductor 3.14 available and R 4.1.0
