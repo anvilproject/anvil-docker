@@ -1,3 +1,13 @@
+## 3.13.1 - 6/8/2021
+
+- Update www-address to accomodate recent network change for RStudio container
+
+- Update in base image `biconductor/bioconductor_docker:RELEASE_3_13`. 
+
+- Adding pre-install of Seurat
+
+Image URL: us.gcr.io/anvil-gcr-public/anvil-rstudio-bioconductor:3.13.1
+
 ## 3.13.0 - 5/24/2021
 
 - Launch of Bioconductor release 3.13 image
