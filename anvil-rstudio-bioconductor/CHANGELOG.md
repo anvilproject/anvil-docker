@@ -2,7 +2,7 @@
 
 - Update www-address to accomodate recent network change for RStudio container
 
-- Update in base image `biconductor/bioconductor_docker:RELEASE_3_13`. 
+- Update in base image `biconductor/bioconductor_docker:RELEASE_3_13_1`. 
 
 - Adding pre-install of Seurat
 
