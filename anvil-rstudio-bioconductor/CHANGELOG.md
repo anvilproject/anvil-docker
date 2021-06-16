@@ -1,3 +1,11 @@
+## 3.13.2 - 6/14/2021
+
+- Update in base image `biconductor/bioconductor_docker:RELEASE_3_13`. 
+
+- Rebuild stack
+
+Image URL: us.gcr.io/anvil-gcr-public/anvil-rstudio-bioconductor:3.13.2
+
 ## 3.13.1 - 6/8/2021
 
 - Update www-address to accomodate recent network change for RStudio container
