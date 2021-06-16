@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
  && rm -rf /var/lib/apt/lists/*
 
 # google-cloud R packages
-RUN R -e "BiocManager::install(c('DataBiosphere/Ronaldo', 'shiny', 'bigrquery', 'googleCloudStorageR', 'tidyverse'))"
+RUN R -e "BiocManager::install(c('DataBiosphere/Ronaldo', 'shiny', 'bigrquery', 'googleCloudStorageR', 'tidyverse', 'Seurat'))"
 
 RUN pip3 -V \
     && pip3 install crcmod

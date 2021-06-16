@@ -4,13 +4,15 @@
 
 - Rebuild stack
 
-Image URL: us.gcr.io/anvil-gcr-public/anvil-rstudio-bioconductor:3.13.1
+Image URL: us.gcr.io/anvil-gcr-public/anvil-rstudio-bioconductor:3.13.2
 
-## 3.13.1 - 6/10/2021
+## 3.13.1 - 6/8/2021
 
-- Bug fix in base image `biconductor/bioconductor_docker:RELEASE_3_13`. 
+- Update www-address to accomodate recent network change for RStudio container
 
-- Rebuild stack
+- Update in base image `biconductor/bioconductor_docker:RELEASE_3_13_1`. 
+
+- Adding pre-install of Seurat
 
 Image URL: us.gcr.io/anvil-gcr-public/anvil-rstudio-bioconductor:3.13.1
 
