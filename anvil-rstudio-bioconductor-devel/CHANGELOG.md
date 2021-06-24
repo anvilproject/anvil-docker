@@ -1,3 +1,10 @@
+## 3.14.2 - 6/24/2021
+
+- Fix bug with ggplot2 causing RStudio to crash
+   - See https://github.com/rstudio/rstudio/issues/9373
+
+Image URL: us.gcr.io/anvil-gcr-public/anvil-rstudio-bioconductor-devel:3.14.2
+
 ## 3.14.1 - 6/08/2021
 
 - Update www-address to accomodate recent network change for RStudio container
