@@ -1,3 +1,9 @@
+## 3.15.0 - 11/2/2021
+
+- Rebuild stack with latest devel image of Bioconductor with version 3.15
+
+Image URL: us.gcr.io/anvil-gcr-public/anvil-rstudio-bioconductor-devel:3.15.0
+
 ## 3.14.2 - 6/24/2021
 
 - Fix bug with ggplot2 causing RStudio to crash
