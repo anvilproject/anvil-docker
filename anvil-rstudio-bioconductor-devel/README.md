@@ -1,5 +1,6 @@
 | Development Image Release | Docker Image URL |Date Updated | Questions or Feedback | 
 | --- | --- | --- | --- |
+| 3.15.0 | us.gcr.io/anvil-gcr-public/anvil-rstudio-bioconductor-devel:3.15.0 | 11/2/2021 | Contact the [Bioconductor Team](mailto:nturaga.bioc@gmail.com) |
 | 3.14.2 | us.gcr.io/anvil-gcr-public/anvil-rstudio-bioconductor-devel:3.14.2 | 06/24/2021 | Contact the [Bioconductor Team](mailto:nturaga.bioc@gmail.com) |
 | 3.14.1 | us.gcr.io/anvil-gcr-public/anvil-rstudio-bioconductor-devel:3.14.1 | 06/08/2021 | Contact the [Bioconductor Team](mailto:nturaga.bioc@gmail.com) |
 | 3.14.0 | us.gcr.io/anvil-gcr-public/anvil-rstudio-bioconductor-devel:3.14.0 | 06/01/2021 | Contact the [Bioconductor Team](mailto:nturaga.bioc@gmail.com) |

@@ -1,3 +1,13 @@
+## 3.14.0 - 11/2/2021
+
+- Latest release of Bioconductor 3.14
+
+- Update in base image bioconductor/bioconductor_docker:RELEASE_3_14.
+
+- Rebuild stack.
+
+Image URL: us.gcr.io/anvil-gcr-public/anvil-rstudio-bioconductor:3.14.0
+
 ## 3.13.3 - 9/28/2021
 
 - Update in base image bioconductor/bioconductor_docker:RELEASE_3_13.
