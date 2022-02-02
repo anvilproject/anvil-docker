@@ -5,5 +5,5 @@ steps:
       - -c
       - |
         tag=$(cat anvil-rstudio-bioconductor-devel/VERSION)
-        docker build -t us.gcr.io/broad-dsp-gcr-public/anvil-rstudio-bioconductor-devel:$tag -f anvil-rstudio-bioconductor-devel/Dockerfile
+        docker build -t us.gcr.io/broad-dsp-gcr-public/anvil-rstudio-bioconductor-devel:$tag -f anvil-rstudio-bioconductor-devel/Dockerfile .
         docker push us.gcr.io/broad-dsp-gcr-public/anvil-rstudio-bioconductor-devel:$tag
