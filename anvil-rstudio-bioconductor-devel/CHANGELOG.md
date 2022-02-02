@@ -1,3 +1,7 @@
+## 3.15.1 - 2/2/2022
+
+- Add RStudio user to users group for proper permissions
+
 ## 3.15.0 - 11/2/2021
 
 - Rebuild stack with latest devel image of Bioconductor with version 3.15

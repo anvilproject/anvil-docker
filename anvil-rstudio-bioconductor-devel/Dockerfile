@@ -17,6 +17,10 @@ RUN R -e "BiocManager::install(c('DataBiosphere/Ronaldo', 'shiny', 'bigrquery', 
 RUN pip3 -V \
     && pip3 install crcmod
 
+# add rstudio user to users group
+RUN usermod -g users rstudio \
+    && useradd -m -s /bin/bash -N -u 1001 welder-user
+
 ENV RSTUDIO_PORT 8001
 ENV RSTUDIO_HOME /etc/rstudio
 ENV RSTUDIO_USERSETTING /home/rstudio/.rstudio/monitored/user-settings/user-settings

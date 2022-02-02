@@ -1,3 +1,7 @@
+## 3.14.1 - 2/2/2022
+
+- Add RStudio user to users group for proper permissions
+
 ## 3.14.0 - 11/2/2021
 
 - Latest release of Bioconductor 3.14

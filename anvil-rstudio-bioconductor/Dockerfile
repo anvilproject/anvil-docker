@@ -14,6 +14,10 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
 RUN pip3 -V \
     && pip3 install --no-cache-dir -U crcmod
 
+# add rstudio user to users group
+RUN usermod -g users rstudio \
+    && useradd -m -s /bin/bash -N -u 1001 welder-user
+
 # google-cloud R packages
 RUN R -e "BiocManager::install(c('DataBiosphere/Ronaldo', 'shiny', 'bigrquery', 'googleCloudStorageR', 'tidyverse', 'Seurat'))"
 
