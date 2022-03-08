@@ -1,3 +1,11 @@
+## 3.14.2 - 3/8/2022
+
+- Update base bioconductor/bioconductor_docker:RELEASE_3_14 image.
+
+- Rebuild stack.
+
+Image URL: us.gcr.io/broad-dsp-gcr-public/anvil-rstudio-bioconductor:3.14.2
+
 ## 3.14.1 - 2/2/2022
 
 - Add RStudio user to users group for proper permissions
