@@ -1,3 +1,11 @@
+## 3.15.0 - 4/26/2022
+
+- Update base bioconductor/bioconductor_docker:RELEASE_3_15 image.
+
+- R 4.2.0 is the current version.
+
+Image URL: us.gcr.io/broad-dsp-gcr-public/anvil-rstudio-bioconductor:3.15.0
+
 ## 3.14.2 - 3/8/2022
 
 - Update base bioconductor/bioconductor_docker:RELEASE_3_14 image.

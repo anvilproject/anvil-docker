@@ -1,5 +1,6 @@
 # Install Bioconductor packages
 BiocManager::install(c(
+    "AnVIL",
     "SingleCellExperiment", 
     "GenomicFeatures", 
     "GenomicAlignments", 
