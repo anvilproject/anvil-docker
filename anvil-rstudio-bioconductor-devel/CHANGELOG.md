@@ -1,3 +1,9 @@
+## 3.16.0 - 4/26/2022
+
+- Bioconductor devel image i.e 3.16 , on R-4.2.0
+
+Image URL: us.gcr.io/broad-dsp-gcr-public/anvil-rstudio-bioconductor:3.16.0
+
 ## 3.15.1 - 2/2/2022
 
 - Add RStudio user to users group for proper permissions
