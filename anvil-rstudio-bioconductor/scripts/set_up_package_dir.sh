@@ -6,7 +6,8 @@ set -e
 # Therefore, we will run this script from Leonardo after the PD is mounted
 
 RSTUDIO_USER_HOME=/home/rstudio
-R_PATH=`R CMD printenv R_LIBS_USER | sed 's/~\///g'`
+R_PATH=`Rscript -e "cat(Sys.getenv('R_LIBS_USER'))"`
+# R_PATH=`R CMD printenv R_LIBS_USER | sed 's/~\///g'`
 BIOCONDUCTOR_VERSION=`printenv BIOCONDUCTOR_DOCKER_VERSION | sed 's/\(^[0-9].[0-9][0-9]\).*/\1/g'`
 R_PACKAGE_DIR=${RSTUDIO_USER_HOME}/${R_PATH}-${BIOCONDUCTOR_VERSION}
 
