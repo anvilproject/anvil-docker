@@ -6,11 +6,20 @@ set -e
 # Therefore, we will run this script from Leonardo after the PD is mounted
 
 RSTUDIO_USER_HOME=/home/rstudio
-R_PATH=`Rscript -e "cat(Sys.getenv('R_LIBS_USER'))"`
-# R_PATH=`R CMD printenv R_LIBS_USER | sed 's/~\///g'`
-BIOCONDUCTOR_VERSION=`printenv BIOCONDUCTOR_DOCKER_VERSION | sed 's/\(^[0-9].[0-9][0-9]\).*/\1/g'`
-R_PACKAGE_DIR=${RSTUDIO_USER_HOME}${R_PATH}-${BIOCONDUCTOR_VERSION}
 
+# Because of how R_PATH is run '/root' is being added as the base dir name for this R_PATH.
+# This chunk of code checks to see if root is coming from this location and replaces it
+# with a blank space.
+R_PATH=`Rscript -e "cat(Sys.getenv('R_LIBS_USER'))"`
+CHECK_ROOT='/root'
+if [[ "$R_PATH" == *"$CHECK_ROOT"* ]]; then
+    R_PATH="${R_PATH/\/root\//}"
+fi
+
+BIOCONDUCTOR_VERSION=`printenv BIOCONDUCTOR_DOCKER_VERSION | sed 's/\(^[0-9].[0-9][0-9]\).*/\1/g'`
+R_PACKAGE_DIR=${RSTUDIO_USER_HOME}/${R_PATH}-${BIOCONDUCTOR_VERSION}
+
+# The sudo command to make the directory here confirms it's running as root.
 sudo -E -u rstudio mkdir -p ${R_PACKAGE_DIR}
 
 echo R_LIBS=${R_PACKAGE_DIR} >> /usr/local/lib/R/etc/Renviron.site
