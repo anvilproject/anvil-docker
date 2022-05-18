@@ -35,4 +35,4 @@ EXPOSE $RSTUDIO_PORT
 
 COPY scripts ${RSTUDIO_HOME}/scripts
 RUN find ${RSTUDIO_HOME}/scripts -name '*.sh' -type f | xargs chmod +x \
- && echo "PIP_USER=true" >>  /usr/local/lib/R/etc/Renviron.site
+ && echo "PIP_USER=false" >>  /usr/local/lib/R/etc/Renviron.site
