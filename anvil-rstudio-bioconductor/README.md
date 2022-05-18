@@ -1,5 +1,9 @@
 | Latest Image Release | Docker Image URL |Date Updated | Questions or Feedback | 
-| --- | --- | --- | --- |
+| --- | --- | --- | --- 
+| 3.15.1 | us.gcr.io/broad-dsp-gcr-public/anvil-rstudio-bioconductor:3.15.0 | 5/02/2022 | Contact the [Bioconductor Team](mailto:nturaga.bioc@gmail.com) |
+| 3.15.0 | us.gcr.io/broad-dsp-gcr-public/anvil-rstudio-bioconductor:3.15.0 | 4/26/2022 | Contact the [Bioconductor Team](mailto:nturaga.bioc@gmail.com) |
+| 3.14.2 | us.gcr.io/broad-dsp-gcr-public/anvil-rstudio-bioconductor:3.14.2 | 3/8/2022 | Contact the [Bioconductor Team](mailto:nturaga.bioc@gmail.com) |
+| 3.14.1 | us.gcr.io/broad-dsp-gcr-public/anvil-rstudio-bioconductor:3.14.1 | 2/2/2022 | Contact the [Bioconductor Team](mailto:nturaga.bioc@gmail.com) |
 | 3.14.0 | us.gcr.io/anvil-gcr-public/anvil-rstudio-bioconductor:3.14.0 | 11/2/2021 | Contact the [Bioconductor Team](mailto:nturaga.bioc@gmail.com) |
 | 3.13.3 | us.gcr.io/anvil-gcr-public/anvil-rstudio-bioconductor:3.13.3 | 9/28/2021 | Contact the [Bioconductor Team](mailto:nturaga.bioc@gmail.com) |
 | 3.13.2 | us.gcr.io/anvil-gcr-public/anvil-rstudio-bioconductor:3.13.2 | 6/24/2021 | Contact the [Bioconductor Team](mailto:nturaga.bioc@gmail.com) |
@@ -87,6 +91,5 @@ The AnVIL RStudio image is customized to disable the RStudio login screen. Futur
 # RStudio Bioconductor Updates
 
 All updates and changes to the current RStudio Bioconductor Docker image are listed in the Rstudio image [CHANGELOG.md file](CHANGELOG.md). 
-
 
 
