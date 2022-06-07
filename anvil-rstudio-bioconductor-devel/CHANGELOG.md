@@ -1,3 +1,11 @@
+## 3.16.1 - 6/06/2022
+
+- Update base image bioconductor/bioconductor_docker:devel with python3.8-venv
+
+- rebuild stack
+
+Image URL: us.gcr.io/broad-dsp-gcr-public/anvil-rstudio-bioconductor:3.16.1
+
 ## 3.16.0 - 4/26/2022
 
 - Bioconductor devel image i.e 3.16 , on R-4.2.0

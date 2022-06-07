@@ -1,3 +1,21 @@
+## 3.15.2 - 6/06/2022
+
+- Update base bioconductor/bioconductor_docker:RELEASE_3_15 image with python3.8-venv
+
+- rebuild stack.
+
+- Add CHANGELOG.md changes for 3.15.1 as well.
+
+Image URL: us.gcr.io/broad-dsp-gcr-public/anvil-rstudio-bioconductor:3.15.2
+
+## 3.15.1 - 5/02/2022
+
+- AnVIL package needs to be installed in the RStudio image
+
+- Patch version update 3.15.1
+
+Image URL: us.gcr.io/broad-dsp-gcr-public/anvil-rstudio-bioconductor:3.15.1
+
 ## 3.15.0 - 4/26/2022
 
 - Update base bioconductor/bioconductor_docker:RELEASE_3_15 image.
