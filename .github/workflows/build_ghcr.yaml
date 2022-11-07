@@ -1,0 +1,49 @@
+name: Build container image for GHCR
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+  schedule:
+    - cron: '0 18 * * 5'
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        base:
+          - {directory: 'anvil-rstudio-bioconductor'}
+          - {directory: 'anvil-rstudio-bioconductor-devel'}
+    name: Build branch images
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Login to GHCR
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set version
+        id: version-meta
+        run: echo "CONTAINER_VERSION=$(cat ${{ matrix.base.directory }}/VERSION)" >> $GITHUB_OUTPUT
+
+      - name: Extract metadata for container image
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ghcr.io/anvilproject/${{ matrix.base.directory }}
+          tags: |
+            type=raw,value=${{ steps.version-meta.outputs.CONTAINER_VERSION }}
+
+      - name: Build and push container image to GHCR
+        uses: docker/build-push-action@v3
+        with:
+          context: ${{ matrix.base.directory }}
+          file: ${{ matrix.base.directory }}/Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
