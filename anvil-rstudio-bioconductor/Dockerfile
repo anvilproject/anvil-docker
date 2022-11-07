@@ -1,4 +1,4 @@
-FROM bioconductor/bioconductor_docker:RELEASE_3_15
+FROM bioconductor/bioconductor_docker:RELEASE_3_16
 
 RUN apt-get update && apt-get install -yq --no-install-recommends \
     gnupg \
