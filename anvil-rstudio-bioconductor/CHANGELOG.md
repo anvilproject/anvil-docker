@@ -1,3 +1,9 @@
+## 3.16.0 - 11/7/2022
+
+- Update base bioconductor/bioconductor_docker:RELEASE_3_16 image with Bioconductor 3.16 release
+
+Image URL: us.gcr.io/broad-dsp-gcr-public/anvil-rstudio-bioconductor:3.16.0
+
 ## 3.15.3 - 9/13/2022
 
 - Update base bioconductor/bioconductor_docker:RELEASE_3_15 image with R 4.2.1 and including Quarto
