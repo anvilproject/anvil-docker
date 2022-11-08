@@ -35,7 +35,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: ghcr.io/anvilproject/${{ matrix.base.directory }}
+          images: ghcr.io/${{ github.repository_owner }}/${{ matrix.base.directory }}
           tags: |
             type=raw,value=${{ steps.version-meta.outputs.CONTAINER_VERSION }}
 
