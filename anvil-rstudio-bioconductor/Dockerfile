@@ -1,4 +1,4 @@
-FROM bioconductor/bioconductor_docker:RELEASE_3_15
+FROM bioconductor/bioconductor_docker:RELEASE_3_16
 
 RUN apt-get update && apt-get install -yq --no-install-recommends \
     gnupg \
@@ -23,13 +23,12 @@ RUN R -e "BiocManager::install(c('AnVIL', 'DataBiosphere/Ronaldo', 'shiny', 'big
 
 ENV RSTUDIO_PORT 8001
 ENV RSTUDIO_HOME /etc/rstudio
-ENV RSTUDIO_USERSETTING /home/rstudio/.rstudio/monitored/user-settings/user-settings
+ENV RSTUDIO_USERSETTING /home/rstudio/.config/rstudio/rstudio-prefs.json
 
 ADD rserver.conf $RSTUDIO_HOME/rserver.conf
 
-RUN sed -i 's/alwaysSaveHistory="0"/alwaysSaveHistory="1"/g'  $RSTUDIO_USERSETTING \
- && sed -i 's/loadRData="0"/loadRData="1"/g' $RSTUDIO_USERSETTING \
- && sed -i 's/saveAction="0"/saveAction="1"/g' $RSTUDIO_USERSETTING
+RUN sed -i 's/"always_save_history": false/"always_save_history": true/g'  $RSTUDIO_USERSETTING \
+ && sed -i 's/"save_workspace": "never"/"save_workspace": "always"/g' $RSTUDIO_USERSETTING
 
 EXPOSE $RSTUDIO_PORT
 
