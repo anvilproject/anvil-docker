@@ -1,0 +1,38 @@
+{
+    "storage_api" : "https://storage.googleapis.com",
+    "tools" : [
+        "python",
+        "r",
+        "gatk",
+        "spark"
+    ],
+    "version_master_file" : "terra-docker-versions-new.json",
+    "doc_suffix" : "versions.json",
+    "gcr_image_repo" : "us.gcr.io/broad-dsp-gcr-public",
+    "doc_bucket" : "gs://terra-docker-image-documentation",
+    "doc_bucket_no_prefix" : "terra-docker-image-documentation",
+    "image_data" : [
+        {
+            "name" : "anvil-rstudio-bioconductor",
+            "base_label" : "R / Bioconductor",
+            "tools" : [
+                "python",
+                "r"
+            ],
+            "packages" : {
+                "r" : [
+                    "Bioconductor",
+                    "tidyverse"
+                ]
+            },
+            "version" : "3.16.0",
+            "automated_flags" : {
+                "generate_docs" : true,
+                "include_in_ui" : true,
+                "build" : true,
+                "include_in_custom_dataproc" : true,
+                "include_in_custom_gce" : true
+            }
+        }
+    ]
+}

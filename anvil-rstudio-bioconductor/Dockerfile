@@ -33,5 +33,8 @@ RUN sed -i 's/"always_save_history": false/"always_save_history": true/g'  $RSTU
 EXPOSE $RSTUDIO_PORT
 
 COPY scripts ${RSTUDIO_HOME}/scripts
+
 RUN find ${RSTUDIO_HOME}/scripts -name '*.sh' -type f | xargs chmod +x \
  && echo "PIP_USER=true" >>  /usr/local/lib/R/etc/Renviron.site
+
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
