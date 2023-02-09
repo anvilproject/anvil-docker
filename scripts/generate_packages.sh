@@ -17,7 +17,7 @@ config_location = "config/conf.json"
 def main():
   params = generate_package_docs.ParamProcessor(argv)
   docs = generate_package_docs.get_docs(params)
-  file_name = "{}/info/{}-{}".format(params.image_dir, params.image_config['version'], params.config['doc_suffix'])
+  file_name = f"{params.image_dir}/info/{params.image_dir}-{params.image_config['version']}-{params.config['doc_suffix']}"
   utils.write_json_to_file(docs, file_name)
 
 if __name__ == '__main__':
