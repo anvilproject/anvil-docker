@@ -4,8 +4,6 @@ on:
     branches:
       - master
   workflow_dispatch:
-  schedule:
-    - cron: '0 18 * * 5'
 
 jobs:
   build:
