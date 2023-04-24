@@ -25,7 +25,29 @@
                     "tidyverse"
                 ]
             },
-            "version" : "3.16.0",
+            "version" : "3.16.1",
+            "automated_flags" : {
+                "generate_docs" : true,
+                "include_in_ui" : true,
+                "build" : true,
+                "include_in_custom_dataproc" : true,
+                "include_in_custom_gce" : true
+            }
+        },
+        {
+            "name" : "anvil-rstudio-bioconductor-devel",
+            "base_label" : "R / Bioconductor",
+            "tools" : [
+                "python",
+                "r"
+            ],
+            "packages" : {
+                "r" : [
+                    "Bioconductor",
+                    "tidyverse"
+                ]
+            },
+            "version" : "3.17.0",
             "automated_flags" : {
                 "generate_docs" : true,
                 "include_in_ui" : true,
