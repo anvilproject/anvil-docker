@@ -1,4 +1,4 @@
-FROM bioconductor/bioconductor_docker:devel
+FROM ghcr.io/bioconductor/ml-verse:devel
 
 RUN apt-get update && apt-get install -yq --no-install-recommends \
     gnupg \
@@ -11,15 +11,15 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
-# google-cloud R packages
-RUN R -e "BiocManager::install(c('AnVIL', 'DataBiosphere/Ronaldo', 'shiny', 'bigrquery', 'googleCloudStorageR', 'tidyverse', 'Seurat'))"
-
 RUN pip3 -V \
-    && pip3 install crcmod
+    && pip3 install --no-cache-dir -U crcmod
 
 # add rstudio user to users group
 RUN usermod -g users rstudio \
     && useradd -m -s /bin/bash -N -u 1001 welder-user
+
+# google-cloud R packages
+RUN R -e "BiocManager::install(c('AnVIL', 'DataBiosphere/Ronaldo', 'shiny', 'bigrquery', 'googleCloudStorageR', 'tidyverse', 'Seurat'))"
 
 ENV RSTUDIO_PORT 8001
 ENV RSTUDIO_HOME /etc/rstudio
@@ -33,5 +33,8 @@ RUN sed -i 's/"always_save_history": false/"always_save_history": true/g'  $RSTU
 EXPOSE $RSTUDIO_PORT
 
 COPY scripts ${RSTUDIO_HOME}/scripts
+
 RUN find ${RSTUDIO_HOME}/scripts -name '*.sh' -type f | xargs chmod +x \
  && echo "PIP_USER=true" >>  /usr/local/lib/R/etc/Renviron.site
+
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*

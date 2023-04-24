@@ -1,4 +1,4 @@
-FROM bioconductor/bioconductor_docker:RELEASE_3_16
+FROM ghcr.io/bioconductor/ml-verse:3.16
 
 RUN apt-get update && apt-get install -yq --no-install-recommends \
     gnupg \
