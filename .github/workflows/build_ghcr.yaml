@@ -52,10 +52,24 @@ jobs:
 
       - run: |
           mkdir -p ${{ matrix.base.directory }}/info
+          mkdir -p /tmp/${{ matrix.base.directory }}
           docker run --name ${{ matrix.base.directory }} -d ${{ steps.meta.outputs.tags }} 
           bash scripts/generate_packages.sh ${{ matrix.base.directory }}
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add ${{ matrix.base.directory }}
-          git commit -m "Generated info for ${{ matrix.base.directory }}"
-          git push
+          cp -r ${{ matrix.base.directory }}/info /tmp/${{ matrix.base.directory }}/
+
+      - name: Push
+        uses: nick-fields/retry@v2
+        with:
+          timeout_minutes: 10
+          max_attempts: 50
+          shell: bash
+          command: |
+            set -x
+            git config --global --add safe.directory "$GITHUB_WORKSPACE"
+            git pull origin main || git reset --hard origin/main
+            git config user.name github-actions
+            git config user.email github-actions@github.com
+            cp -r /tmp/${{ matrix.base.directory }}/info ${{ matrix.base.directory }}/
+            git add ${{ matrix.base.directory }}
+            git commit -m "Push generated ${{steps.defs.outputs.id}}"
+            git push
