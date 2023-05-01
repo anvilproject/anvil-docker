@@ -71,5 +71,5 @@ jobs:
             git config user.email github-actions@github.com
             cp -r /tmp/${{ matrix.base.directory }}/info ${{ matrix.base.directory }}/
             git add ${{ matrix.base.directory }}
-            git commit -m "Push generated ${{steps.defs.outputs.id}}"
+            git commit -m "Generated info for ${{ matrix.base.directory }}"
             git push
