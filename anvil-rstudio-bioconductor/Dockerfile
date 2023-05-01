@@ -12,14 +12,14 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
  && rm -rf /var/lib/apt/lists/*
 
 RUN pip3 -V \
-    && pip3 install --no-cache-dir -U crcmod
+    && pip3 install --no-cache-dir -U crcmod terra-notebook-utils
 
 # add rstudio user to users group
 RUN usermod -g users rstudio \
     && useradd -m -s /bin/bash -N -u 1001 welder-user
 
 # google-cloud R packages
-RUN R -e "BiocManager::install(c('AnVIL', 'DataBiosphere/Ronaldo', 'shiny', 'bigrquery', 'googleCloudStorageR', 'tidyverse', 'Seurat'))"
+RUN R -e "BiocManager::install(c('AnVIL', 'DataBiosphere/Ronaldo', 'shiny', 'bigrquery', 'googleCloudStorageR', 'tidyverse', 'Seurat', 'markdown'))"
 
 ENV RSTUDIO_PORT 8001
 ENV RSTUDIO_HOME /etc/rstudio
