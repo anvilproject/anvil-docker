@@ -1,4 +1,4 @@
-FROM ghcr.io/bioconductor/ml-verse:3.16
+FROM ghcr.io/bioconductor/ml-verse:3.17 as build
 
 RUN apt-get update && apt-get install -yq --no-install-recommends \
     gnupg \
@@ -12,14 +12,14 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
  && rm -rf /var/lib/apt/lists/*
 
 RUN pip3 -V \
-    && pip3 install --no-cache-dir -U crcmod
+    && pip3 install --no-cache-dir -U crcmod terra-notebook-utils
 
 # add rstudio user to users group
 RUN usermod -g users rstudio \
     && useradd -m -s /bin/bash -N -u 1001 welder-user
 
 # google-cloud R packages
-RUN R -e "BiocManager::install(c('AnVIL', 'DataBiosphere/Ronaldo', 'shiny', 'bigrquery', 'googleCloudStorageR', 'tidyverse', 'Seurat'))"
+RUN R -e "BiocManager::install(c('AnVIL', 'DataBiosphere/Ronaldo', 'shiny', 'bigrquery', 'googleCloudStorageR', 'tidyverse', 'Seurat', 'markdown'))"
 
 ENV RSTUDIO_PORT 8001
 ENV RSTUDIO_HOME /etc/rstudio
@@ -38,3 +38,11 @@ RUN find ${RSTUDIO_HOME}/scripts -name '*.sh' -type f | xargs chmod +x \
  && echo "PIP_USER=true" >>  /usr/local/lib/R/etc/Renviron.site
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+
+FROM ghcr.io/bioconductor/ml-verse:3.17 as final
+COPY --from=build / /
+
+ENV RSTUDIO_PORT 8001
+ENV RSTUDIO_HOME /etc/rstudio
+ENV RSTUDIO_USERSETTING /home/rstudio/.config/rstudio/rstudio-prefs.json
