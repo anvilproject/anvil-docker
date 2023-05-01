@@ -1,4 +1,4 @@
-FROM ghcr.io/bioconductor/ml-verse:devel
+FROM ghcr.io/bioconductor/ml-verse:devel as build
 
 RUN apt-get update && apt-get install -yq --no-install-recommends \
     gnupg \
@@ -38,3 +38,11 @@ RUN find ${RSTUDIO_HOME}/scripts -name '*.sh' -type f | xargs chmod +x \
  && echo "PIP_USER=true" >>  /usr/local/lib/R/etc/Renviron.site
 
 RUN rm -rf /var/lib/apt/lists/*
+
+
+FROM ghcr.io/bioconductor/ml-verse:devel as final
+COPY --from=build / /
+
+ENV RSTUDIO_PORT 8001
+ENV RSTUDIO_HOME /etc/rstudio
+ENV RSTUDIO_USERSETTING /home/rstudio/.config/rstudio/rstudio-prefs.json
