@@ -19,7 +19,7 @@
         "firecloud": "0.16.35", 
         "getm": "0.0.4", 
         "google-api-core": "2.11.0", 
-        "google-auth": "2.17.3", 
+        "google-auth": "2.18.0", 
         "google-cloud-core": "2.3.2", 
         "google-cloud-storage": "1.44.0", 
         "google-crc32c": "1.5.0", 
@@ -66,12 +66,12 @@
         "tomlkit": "0.11.8", 
         "typing_extensions": "4.5.0", 
         "tzdata": "2023.3", 
-        "urllib3": "2.0.2", 
+        "urllib3": "1.26.15", 
         "wheel": "0.37.1", 
         "wrapt": "1.15.0"
     }, 
     "r": {
-        "AnVIL": "1.13.0", 
+        "AnVIL": "1.13.1", 
         "BH": "1.81.0-1", 
         "BiocManager": "1.30.20", 
         "BiocVersion": "3.18.0", 
