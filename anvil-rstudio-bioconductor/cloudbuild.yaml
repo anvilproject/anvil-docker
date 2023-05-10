@@ -8,4 +8,4 @@ steps:
         tag=$(cat ./VERSION)
         docker build -t us.gcr.io/broad-dsp-gcr-public/anvil-rstudio-bioconductor:$tag .
         docker push us.gcr.io/broad-dsp-gcr-public/anvil-rstudio-bioconductor:$tag
-timeout: 1200s
+timeout: 3600s
