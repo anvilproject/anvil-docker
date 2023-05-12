@@ -6,6 +6,11 @@ steps:
       - |
         cd anvil-rstudio-bioconductor-devel
         tag=$(cat ./VERSION)
-        docker build -t us.gcr.io/broad-dsp-gcr-public/anvil-rstudio-bioconductor-devel:$tag .
+        out=$(docker pull ghcr.io/anvilproject/anvil-rstudio-bioconductor-devel:$tag)
+        while [[ $out != *"up to date"* ]]; do
+          out=$(docker pull ghcr.io/anvilproject/anvil-rstudio-bioconductor-devel:$tag);
+          sleep 30;
+        done
+        docker tag ghcr.io/anvilproject/anvil-rstudio-bioconductor-devel:$tag us.gcr.io/broad-dsp-gcr-public/anvil-rstudio-bioconductor-devel:$tag
         docker push us.gcr.io/broad-dsp-gcr-public/anvil-rstudio-bioconductor-devel:$tag
-timeout: 14400s
+timeout: 3600s
