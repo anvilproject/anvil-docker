@@ -2,7 +2,7 @@ name: Build container image for GHCR
 on:
   push:
     branches:
-      - master
+      - main
   workflow_dispatch:
 
 jobs:
