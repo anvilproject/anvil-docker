@@ -1,5 +1,6 @@
 | Development Image Release | Docker Image URL |Date Updated | Questions or Feedback | 
 | --- | --- | --- | --- |
+| 3.18.0 | us.gcr.io/broad-dsp-gcr-public/anvil-rstudio-bioconductor-devel:3.18.0 | 05/12/2023 | Contact the [Bioconductor Team](mailto:almahmoud@channing.harvard.edu) |
 | 3.17.0 | us.gcr.io/broad-dsp-gcr-public/anvil-rstudio-bioconductor-devel:3.17.0 | 11/07/2022 | Contact the [Bioconductor Team](mailto:almahmoud@channing.harvard.edu) |
 | 3.16.1 | us.gcr.io/broad-dsp-gcr-public/anvil-rstudio-bioconductor-devel:3.16.1 | 6/06/2022 | Contact the [Bioconductor Team](mailto:nturaga.bioc@gmail.com) |
 | 3.16.0 | us.gcr.io/broad-dsp-gcr-public/anvil-rstudio-bioconductor-devel:3.16.0 | 05/11/2022 | Contact the [Bioconductor Team](mailto:nturaga.bioc@gmail.com) |

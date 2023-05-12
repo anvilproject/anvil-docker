@@ -1,3 +1,11 @@
+## 3.18.0 - 5/12/2023
+
+- Update base image ghcr.io/bioconductor/ml-verse:devel with GPU drivers
+- R 4.3.0
+- Bioconductor 3.18
+
+Image URL: us.gcr.io/broad-dsp-gcr-public/anvil-rstudio-bioconductor-devel:3.18.0
+
 ## 3.17.0 - 11/7/2022
 
 - Update base image bioconductor/bioconductor_docker:devel
