@@ -31,7 +31,13 @@ jobs:
 
       - name: Set version
         id: version-meta
-        run: echo "CONTAINER_VERSION=$(cat ${{ matrix.base.directory }}/VERSION)" >> $GITHUB_OUTPUT
+        run: |
+          devversion="$(cat ${{ matrix.base.directory }}/dev_VERSION)"
+          version="$(cat ${{ matrix.base.directory }}/VERSION)"
+          if [ "$devversion" != "${devversion%"$version"*}" ]; then
+            devversion="$(echo $version)"
+          fi
+          echo "CONTAINER_VERSION=$devversion" >> $GITHUB_OUTPUT
 
       - name: Extract metadata for container image
         id: meta
