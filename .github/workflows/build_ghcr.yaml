@@ -16,6 +16,11 @@ jobs:
     name: Build branch images
     runs-on: ubuntu-latest
     steps:
+      - name: Free root space
+        uses: almahmoud/free-root-space@v1
+        with:
+          verbose: true
+      
       - uses: actions/checkout@v3
 
       - name: Login to GHCR
