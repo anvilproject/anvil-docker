@@ -20,8 +20,10 @@ jobs:
         uses: almahmoud/free-root-space@v1
         with:
           verbose: true
-      
+
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Login to GHCR
         uses: docker/login-action@v2
@@ -44,6 +46,17 @@ jobs:
           fi
           echo "CONTAINER_VERSION=$devversion" >> $GITHUB_OUTPUT
 
+      - name: Get list of changed files if on push (check if VERSION changed)
+        id: changed
+        if: github.event_name == 'push'
+        run: |
+          git diff --name-only ${{ github.event.before }} ${{ github.event.after }} > tmpchanged
+          if grep -xq "^${{ matrix.base.directory }}/VERSION$" tmpchanged; then
+            echo "CHANGED=TRUE" >> $GITHUB_OUTPUT
+          else
+            echo "CHANGED=FALSE" >> $GITHUB_OUTPUT
+          fi
+
       - name: Extract metadata for container image
         id: meta
         uses: docker/metadata-action@v4
@@ -61,14 +74,18 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-      - run: |
+      - name: Generate info JSON with Broad script
+        if: steps.changed.outputs.CHANGED == 'TRUE'
+        run: |
           mkdir -p ${{ matrix.base.directory }}/info
           mkdir -p /tmp/${{ matrix.base.directory }}
-          docker run --name ${{ matrix.base.directory }} -d ${{ steps.meta.outputs.tags }} 
+          docker run --name ${{ matrix.base.directory }} -d ${{ steps.meta.outputs.tags }}
+          sed -i "s/##${{matrix.base.directory}}-VERSION##/$(cat ${{matrix.base.directory}}/VERSION)/g" config/conf.json
           bash scripts/generate_packages.sh ${{ matrix.base.directory }}
           cp -r ${{ matrix.base.directory }}/info /tmp/${{ matrix.base.directory }}/
 
-      - name: Push
+      - name: Push info
+        if: steps.changed.outputs.CHANGED == 'TRUE'
         uses: nick-fields/retry@v2
         with:
           timeout_minutes: 10

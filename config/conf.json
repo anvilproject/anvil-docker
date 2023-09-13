@@ -25,7 +25,7 @@
                     "tidyverse"
                 ]
             },
-            "version" : "3.17.0",
+            "version" : "##anvil-rstudio-bioconductor-VERSION##",
             "automated_flags" : {
                 "generate_docs" : true,
                 "include_in_ui" : true,
@@ -47,7 +47,7 @@
                     "tidyverse"
                 ]
             },
-            "version" : "3.18.0",
+            "version" : "##anvil-rstudio-bioconductor-devel-VERSION##",
             "automated_flags" : {
                 "generate_docs" : true,
                 "include_in_ui" : true,
