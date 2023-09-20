@@ -82,6 +82,8 @@ jobs:
           docker run --name ${{ matrix.base.directory }} -d ${{ steps.meta.outputs.tags }}
           sed -i "s/##${{matrix.base.directory}}-VERSION##/$(cat ${{matrix.base.directory}}/VERSION)/g" config/conf.json
           bash scripts/generate_packages.sh ${{ matrix.base.directory }}
+          # Remove spaces
+          (cd ${{ matrix.base.directory }}/info && for file in *; do [[ "$file" == *" "* ]] && mv "$file" "${file// /}"; done)
           cp -r ${{ matrix.base.directory }}/info /tmp/${{ matrix.base.directory }}/
 
       - name: Push info
