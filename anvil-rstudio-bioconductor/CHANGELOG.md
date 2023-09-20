@@ -1,9 +1,15 @@
+## 3.17.1 - 9/13/2023
+
+- Update R to 4.3.1
+
+Image URL: us.gcr.io/broad-dsp-gcr-public/anvil-rstudio-bioconductor:3.17.1
+
 ## 3.17.0 - 5/12/2023
 
 - Update base to ghcr.io/bioconductor/ml-verse:3.17 image with Bioconductor 3.17 release and GPU drivers
 - R 4.3.0
 
-Image URL: us.gcr.io/broad-dsp-gcr-public/anvil-rstudio-bioconductor:3.16.1
+Image URL: us.gcr.io/broad-dsp-gcr-public/anvil-rstudio-bioconductor:3.17.0
 
 ## 3.16.1 - 5/12/2023
 
