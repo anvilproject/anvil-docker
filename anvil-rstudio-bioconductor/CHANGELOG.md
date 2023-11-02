@@ -1,3 +1,9 @@
+## 3.18.0 - 11/1/2023
+
+- Bioconductor 3.18 release with R 4.3.2
+
+Image URL: us.gcr.io/broad-dsp-gcr-public/anvil-rstudio-bioconductor:3.18.0
+
 ## 3.17.1 - 9/13/2023
 
 - Update R to 4.3.1
