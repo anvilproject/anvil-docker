@@ -26,5 +26,4 @@ if __name__ == '__main__':
 EOF
 
 cd ..
-sed -i "s/##$IMAGEDIR-VERSION##/$(cat $IMAGEDIR/VERSION)/g"
 python scripts/generate_packages.py $IMAGEDIR
