@@ -1,6 +1,7 @@
-## 3.18.0 - 11/1/2023
+## 3.18.0 - 11/7/2023
 
 - Bioconductor 3.18 release with R 4.3.2
+- Pin torch to last version for container CUDA version
 
 Image URL: us.gcr.io/broad-dsp-gcr-public/anvil-rstudio-bioconductor:3.18.0
 
