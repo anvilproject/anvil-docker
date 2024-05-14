@@ -1,0 +1,54 @@
+name: Create info files
+on:
+  workflow_dispatch:
+    inputs:
+      directory:
+        default: "anvil-rstudio-bioconductor"
+        required: true
+
+jobs:
+  build:
+    name: Generate info json file for Broad GCR container
+    runs-on: ubuntu-latest
+    steps:
+      - name: Free root space
+        uses: almahmoud/free-root-space@v1
+        with:
+          verbose: true
+
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Generate info JSON with Broad script
+        run: |
+          mkdir -p ${{ inputs.directory }}/info
+          mkdir -p /tmp/${{ inputs.directory }}
+          CURR_VERSION=$(cat ${{ inputs.directory }}/VERSION)
+          docker run --name ${{ inputs.directory }} -d us.gcr.io/broad-dsp-gcr-public/${{ inputs.directory }}:${CURR_VERSION}
+          sed -i "s/##${{ inputs.directory }}-VERSION##/${CURR_VERSION}/g" config/conf.json
+          bash scripts/generate_packages.sh ${{ inputs.directory }}
+          # Remove spaces
+          (cd ${{ inputs.directory }}/info && for file in *; do [[ "$file" == *" "* ]] && mv "$file" "${file// /}"; done)
+          cp -r ${{ inputs.directory }}/info /tmp/${{ inputs.directory }}/
+
+      - name: Push info
+        uses: nick-fields/retry@v2
+        with:
+          timeout_minutes: 10
+          max_attempts: 50
+          shell: bash
+          command: |
+            set -x
+            git config --global --add safe.directory "$GITHUB_WORKSPACE"
+            git pull origin ${GITHUB_REF#refs/heads/} || git reset --hard origin/${GITHUB_REF#refs/heads/}
+            git config user.name github-actions
+            git config user.email github-actions@github.com
+            cp -r /tmp/${{ inputs.directory }}/info ${{ inputs.directory }}/
+            git add ${{ inputs.directory }}
+            git commit -m "Generated info for ${{ inputs.directory }}"
+            git push
