@@ -25,6 +25,7 @@ jobs:
           python-version: '3.10'
 
       - name: Generate info JSON with Broad script
+        continue-on-error: true
         run: |
           mkdir -p ${{ inputs.directory }}/info
           mkdir -p /tmp/${{ inputs.directory }}
@@ -32,6 +33,8 @@ jobs:
           docker run --name ${{ inputs.directory }} -d us.gcr.io/broad-dsp-gcr-public/${{ inputs.directory }}:${CURR_VERSION}
           sed -i "s/##${{ inputs.directory }}-VERSION##/${CURR_VERSION}/g" config/conf.json
           bash scripts/generate_packages.sh ${{ inputs.directory }}
+      - name: Copy to tmp before retry
+        run: |
           # Remove spaces
           (cd ${{ inputs.directory }}/info && for file in *; do [[ "$file" == *" "* ]] && mv "$file" "${file// /}"; done)
           cp -r ${{ inputs.directory }}/info /tmp/${{ inputs.directory }}/
