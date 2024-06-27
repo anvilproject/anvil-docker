@@ -1,3 +1,9 @@
+## 3.19.1 - 6/27/2024
+
+- Bioconductor 3.19 build with R 4.4.1
+
+Image URL: us.gcr.io/broad-dsp-gcr-public/anvil-rstudio-bioconductor:3.19.1
+
 ## 3.19.0 - 5/13/2024
 
 - Bioconductor 3.19 build with R 4.4.0
