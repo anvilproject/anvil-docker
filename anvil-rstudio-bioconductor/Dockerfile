@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
  && rm -rf /var/lib/apt/lists/*
 
 RUN pip3 -V \
-    && pip3 install --no-cache-dir -U crcmod terra-notebook-utils torch==2.0.1
+    && pip3 install --no-cache-dir -U crcmod terra-notebook-utils torch
 
 # add rstudio user to users group
 RUN usermod -g users rstudio \
