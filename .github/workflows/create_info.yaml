@@ -5,6 +5,9 @@ on:
       directory:
         default: "anvil-rstudio-bioconductor"
         required: true
+      version:
+        required: false
+        description: "Overwrite tag, defaults to VERSION file"
 
 jobs:
   build:
@@ -29,10 +32,15 @@ jobs:
         run: |
           mkdir -p ${{ inputs.directory }}/info
           mkdir -p /tmp/${{ inputs.directory }}
-          CURR_VERSION=$(cat ${{ inputs.directory }}/VERSION)
+          CURR_VERSION="${{ inputs.version }}"
+          if [ -z "$CURR_VERSION" ]; then
+            CURR_VERSION=$(cat ${{ inputs.directory }}/VERSION)
+          fi
+          echo "Used version is $CURR_VERSION"
           docker run --name ${{ inputs.directory }} -d us.gcr.io/broad-dsp-gcr-public/${{ inputs.directory }}:${CURR_VERSION}
           sed -i "s/##${{ inputs.directory }}-VERSION##/${CURR_VERSION}/g" config/conf.json
           bash scripts/generate_packages.sh ${{ inputs.directory }}
+
       - name: Copy to tmp before retry
         run: |
           # Remove spaces
