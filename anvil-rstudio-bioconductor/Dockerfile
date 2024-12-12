@@ -37,7 +37,9 @@ COPY scripts ${RSTUDIO_HOME}/scripts
 RUN find ${RSTUDIO_HOME}/scripts -name '*.sh' -type f | xargs chmod +x \
  && echo "PIP_USER=true" >>  /usr/local/lib/R/etc/Renviron.site
 
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* && \
+    usermod -o -u 1000 rstudio && \
+    find / \( -path /proc -o -path /sys -o -path /dev \) -prune -o -user 1001 -exec chown -h 1000 {} \;
 
 
 FROM ghcr.io/bioconductor/ml-verse:3.20 as final
