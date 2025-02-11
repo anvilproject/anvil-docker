@@ -19,7 +19,7 @@ RUN usermod -g users rstudio \
     && useradd -m -s /bin/bash -N --non-unique -u 1001 welder-user
 
 # google-cloud R packages
-RUN R -e "BiocManager::install(c('AnVIL', 'DataBiosphere/Ronaldo', 'shiny', 'bigrquery', 'googleCloudStorageR', 'tidyverse', 'Seurat', 'markdown', 'SingleCellExperiment', 'GenomicFeatures', 'GenomicAlignments', 'ShortRead', 'DESeq2', 'AnnotationHub', 'ExperimentHub', 'ensembldb', 'scRNAseq', 'scran', 'Rtsne'))"
+RUN R -e "BiocManager::install(c('AnVIL', 'AnVILBase', 'AnVILGCP', 'DataBiosphere/Ronaldo', 'shiny', 'bigrquery', 'googleCloudStorageR', 'tidyverse', 'Seurat', 'markdown', 'SingleCellExperiment', 'GenomicFeatures', 'GenomicAlignments', 'ShortRead', 'DESeq2', 'AnnotationHub', 'ExperimentHub', 'ensembldb', 'scRNAseq', 'scran', 'Rtsne'))"
 
 ENV RSTUDIO_PORT 8001
 ENV RSTUDIO_HOME /etc/rstudio
