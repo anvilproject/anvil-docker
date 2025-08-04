@@ -85,7 +85,7 @@ jobs:
         run: |
           mkdir -p ${{ inputs.target_directory }}/info
           mkdir -p /tmp/${{ inputs.target_directory }}
-          docker run --name upgrade-container -d ${{ steps.meta.outputs.tags }}
+          docker run --name ${{ inputs.target_directory }} -d ${{ steps.meta.outputs.tags }}
           # Update config with new version
           sed -i "s/##${{inputs.target_directory}}-VERSION##/${{ inputs.output_tag }}/g" config/conf.json
           bash scripts/generate_packages.sh ${{ inputs.target_directory }}
