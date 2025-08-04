@@ -21,18 +21,18 @@ jobs:
         with:
           verbose: true
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Login to GHCR
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.10'
 
@@ -59,14 +59,14 @@ jobs:
 
       - name: Extract metadata for container image
         id: meta
-        uses: docker/metadata-action@v4
+        uses: docker/metadata-action@v5
         with:
           images: ghcr.io/${{ github.repository_owner }}/${{ matrix.base.directory }}
           tags: |
             type=raw,value=${{ steps.version-meta.outputs.CONTAINER_VERSION }}
 
       - name: Build and push container image to GHCR
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v6
         with:
           context: ${{ matrix.base.directory }}
           file: ${{ matrix.base.directory }}/Dockerfile
@@ -88,7 +88,7 @@ jobs:
 
       - name: Push info
         if: steps.changed.outputs.CHANGED == 'TRUE'
-        uses: nick-fields/retry@v2
+        uses: nick-fields/retry@v3
         with:
           timeout_minutes: 10
           max_attempts: 50
