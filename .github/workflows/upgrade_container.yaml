@@ -22,7 +22,7 @@ on:
         default: 'https://download2.rstudio.org/server/jammy/amd64/rstudio-server-2025.05.1-513-amd64.deb'
         type: string
       output_tag:
-        description: 'Output tag for the upgraded image (e.g., 3.21.0)'
+        description: 'Output tag for the upgraded image (e.g., 3.21.0-dev)'
         required: true
         type: string
       target_directory:
