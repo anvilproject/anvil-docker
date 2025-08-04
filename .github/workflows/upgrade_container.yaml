@@ -1,0 +1,139 @@
+name: Upgrade Container Image
+on:
+  workflow_dispatch:
+    inputs:
+      base_image:
+        description: 'Base image to upgrade (e.g., us.gcr.io/broad-dsp-gcr-public/anvil-rstudio-bioconductor:3.20.1)'
+        required: true
+        type: string
+      r_version:
+        description: 'R version to install'
+        required: true
+        default: '4.5.1'
+        type: string
+      bioc_version:
+        description: 'Bioconductor version to install'
+        required: true
+        default: '3.21'
+        type: string
+      rstudio_url:
+        description: 'RStudio Server download URL'
+        required: true
+        default: 'https://download2.rstudio.org/server/jammy/amd64/rstudio-server-2025.05.1-513-amd64.deb'
+        type: string
+      output_tag:
+        description: 'Output tag for the upgraded image (e.g., 3.21.0)'
+        required: true
+        type: string
+      target_directory:
+        description: 'Target directory for the image (anvil-rstudio-bioconductor or anvil-rstudio-bioconductor-devel)'
+        required: true
+        default: 'anvil-rstudio-bioconductor'
+        type: choice
+        options:
+          - anvil-rstudio-bioconductor
+          - anvil-rstudio-bioconductor-devel
+
+jobs:
+  upgrade:
+    name: Upgrade container image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Free root space
+        uses: almahmoud/free-root-space@v1
+        with:
+          verbose: true
+
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Login to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Extract metadata for container image
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ghcr.io/${{ github.repository_owner }}/${{ inputs.target_directory }}
+          tags: |
+            type=raw,value=${{ inputs.output_tag }}
+
+      - name: Build and push upgraded container image to GHCR
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          file: Dockerfile.upgrade
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            BASE_IMAGE=${{ inputs.base_image }}
+            R_VERSION=${{ inputs.r_version }}
+            BIOC_VERSION=${{ inputs.bioc_version }}
+            RSTUDIO_URL=${{ inputs.rstudio_url }}
+
+      - name: Generate info JSON with Broad script
+        run: |
+          mkdir -p ${{ inputs.target_directory }}/info
+          mkdir -p /tmp/${{ inputs.target_directory }}
+          docker run --name upgrade-container -d ${{ steps.meta.outputs.tags }}
+          # Update config with new version
+          sed -i "s/##${{inputs.target_directory}}-VERSION##/${{ inputs.output_tag }}/g" config/conf.json
+          bash scripts/generate_packages.sh ${{ inputs.target_directory }}
+          # Remove spaces from filenames
+          (cd ${{ inputs.target_directory }}/info && for file in *; do [[ "$file" == *" "* ]] && mv "$file" "${file// /}"; done)
+          cp -r ${{ inputs.target_directory }}/info /tmp/${{ inputs.target_directory }}/
+
+      - name: Update VERSION files
+        run: |
+          echo "${{ inputs.output_tag }}" > ${{ inputs.target_directory }}/VERSION
+          echo "${{ inputs.output_tag }}" > ${{ inputs.target_directory }}/dev_VERSION
+
+      - name: Update CHANGELOG
+        run: |
+          DATE=$(date '+%m/%d/%Y')
+          cat << EOF > temp_changelog.md
+          ## ${{ inputs.output_tag }} - $DATE
+          
+          - Upgraded R to version ${{ inputs.r_version }}
+          - Upgraded Bioconductor to version ${{ inputs.bioc_version }}
+          - Upgraded RStudio Server from URL: ${{ inputs.rstudio_url }}
+          - Base image: ${{ inputs.base_image }}
+          
+          Image URL: ghcr.io/${{ github.repository_owner }}/${{ inputs.target_directory }}:${{ inputs.output_tag }}
+          
+          EOF
+          cat ${{ inputs.target_directory }}/CHANGELOG.md >> temp_changelog.md
+          mv temp_changelog.md ${{ inputs.target_directory }}/CHANGELOG.md
+
+      - name: Commit and push changes
+        uses: nick-fields/retry@v2
+        with:
+          timeout_minutes: 10
+          max_attempts: 50
+          shell: bash
+          command: |
+            set -x
+            git config --global --add safe.directory "$GITHUB_WORKSPACE"
+            git pull origin ${GITHUB_REF#refs/heads/} || git reset --hard origin/${GITHUB_REF#refs/heads/}
+            git config user.name github-actions
+            git config user.email github-actions@github.com
+            cp -r /tmp/${{ inputs.target_directory }}/info ${{ inputs.target_directory }}/
+            git add ${{ inputs.target_directory }}
+            git commit -m "Upgraded ${{ inputs.target_directory }} to ${{ inputs.output_tag }} (R ${{ inputs.r_version }}, Bioc ${{ inputs.bioc_version }}, RStudio from ${{ inputs.rstudio_url }})"
+            git push
+
+      - name: Clean up
+        if: always()
+        run: |
+          docker stop upgrade-container || true
+          docker rm upgrade-container || true
