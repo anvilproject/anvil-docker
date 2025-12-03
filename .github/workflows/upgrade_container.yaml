@@ -79,6 +79,7 @@ jobs:
             BASE_IMAGE=${{ inputs.base_image }}
             R_VERSION=${{ inputs.r_version }}
             BIOC_VERSION=${{ inputs.bioc_version }}
+            BIOC_DOCKER_VERSION=${{ inputs.output_tag }}
             RSTUDIO_URL=${{ inputs.rstudio_url }}
 
       - name: Generate info JSON with Broad script

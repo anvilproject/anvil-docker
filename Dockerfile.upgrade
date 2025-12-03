@@ -2,7 +2,12 @@ ARG BASE_IMAGE
 FROM ${BASE_IMAGE}
 ARG R_VERSION
 ARG BIOC_VERSION
+ARG BIOC_DOCKER_VERSION
 ARG RSTUDIO_URL
+
+# Set Bioconductor environment variables
+ENV BIOCONDUCTOR_VERSION=${BIOC_VERSION}
+ENV BIOCONDUCTOR_DOCKER_VERSION=${BIOC_DOCKER_VERSION}
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
