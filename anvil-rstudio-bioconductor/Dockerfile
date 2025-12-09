@@ -1,5 +1,7 @@
 FROM ghcr.io/bioconductor/jupyterlab-ml:3.21 as build
 
+USER root
+
 RUN apt-get update && apt-get install -yq --no-install-recommends \
     gnupg \
     lsb-release \
