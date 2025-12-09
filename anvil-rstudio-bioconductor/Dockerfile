@@ -1,4 +1,4 @@
-FROM ghcr.io/bioconductor/ml-verse:3.20 as build
+FROM ghcr.io/bioconductor/jupyterlab-ml:3.21 as build
 
 RUN apt-get update && apt-get install -yq --no-install-recommends \
     gnupg \
@@ -42,7 +42,7 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* && \
     find / \( -path /proc -o -path /sys -o -path /dev \) -prune -o -user 1001 -exec chown -h 1000 {} \;
 
 
-FROM ghcr.io/bioconductor/ml-verse:3.20 as final
+FROM ghcr.io/bioconductor/jupyterlab-ml:3.21 as final
 COPY --from=build / /
 
 ENV RSTUDIO_PORT 8001
