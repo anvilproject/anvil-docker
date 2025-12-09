@@ -8,13 +8,13 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
  && echo "deb http://packages.cloud.google.com/apt cloud-sdk main" > /etc/apt/sources.list.d/google-cloud-sdk.list \
  && curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - \
  && apt-get update \
- && apt-get install -yq --no-install-recommends python3-setuptools \
+ && apt-get install -yq --no-install-recommends \
     google-cloud-sdk \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
 RUN pip3 -V \
-    && pip3 install --no-cache-dir -U crcmod terra-notebook-utils torch
+    && pip3 install --no-cache-dir -U crcmod torch #terra-notebook-utils
 
 # add rstudio user to users group
 RUN usermod -g users rstudio \
