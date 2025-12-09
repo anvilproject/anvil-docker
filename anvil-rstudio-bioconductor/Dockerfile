@@ -13,11 +13,12 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
-RUN pip3 -V \
-    && pip3 install --no-cache-dir -U crcmod torch #terra-notebook-utils
+# Commented out as it's already installed and not needed, to avoid re-installing as root unnecessarily
+# RUN pip3 -V \
+#    && pip3 install --no-cache-dir -U crcmod torch #terra-notebook-utils
 
 # add rstudio user to users group
-RUN usermod -g users rstudio \
+RUN usermod -g users rstudio || usermod -g users jovyan \
     && useradd -m -s /bin/bash -N --non-unique -u 1001 welder-user
 
 # google-cloud R packages
