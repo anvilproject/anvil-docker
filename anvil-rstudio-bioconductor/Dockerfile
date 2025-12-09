@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
 #    && pip3 install --no-cache-dir -U crcmod torch #terra-notebook-utils
 
 # add rstudio user to users group
-RUN usermod -g users rstudio || usermod -g users jovyan \
+RUN ( usermod -g users rstudio && mkdir -p /home/rstudio/.config/rstudio ) || ( usermod -g users jovyan && mkdir -p /home/jovyan/.config/rstudio && ln -s /home/jovyan /home/rstudio ) \
     && useradd -m -s /bin/bash -N --non-unique -u 1001 welder-user
 
 # google-cloud R packages
@@ -28,7 +28,8 @@ ENV RSTUDIO_PORT 8001
 ENV RSTUDIO_HOME /etc/rstudio
 ENV RSTUDIO_USERSETTING /home/rstudio/.config/rstudio/rstudio-prefs.json
 
-ADD rserver.conf $RSTUDIO_HOME/rserver.conf
+COPY rserver.conf $RSTUDIO_HOME/rserver.conf
+COPY rstudio-prefs.json $RSTUDIO_USERSETTING
 
 RUN sed -i 's/"always_save_history": false/"always_save_history": true/g'  $RSTUDIO_USERSETTING \
  && sed -i 's/"save_workspace": "never"/"save_workspace": "always"/g' $RSTUDIO_USERSETTING
