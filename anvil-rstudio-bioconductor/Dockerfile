@@ -39,7 +39,8 @@ EXPOSE $RSTUDIO_PORT
 COPY scripts ${RSTUDIO_HOME}/scripts
 
 RUN find ${RSTUDIO_HOME}/scripts -name '*.sh' -type f | xargs chmod +x \
- && echo "PIP_USER=true" >>  /usr/local/lib/R/etc/Renviron.site
+ && export R_ENVIRON_SITE=$([ -d /usr/local/lib/R/etc ] && echo /usr/local/lib/R/etc/Renviron.site || ([ -d /usr/lib/R/etc ] && echo /usr/lib/R/etc/Renviron.site || (mkdir -p /usr/local/lib/R/etc && echo /usr/local/lib/R/etc/Renviron.site))) \
+ && echo "PIP_USER=true" >>  $R_ENVIRON_SITE
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* && \
     usermod -o -u 1000 rstudio && \
