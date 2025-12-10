@@ -43,7 +43,7 @@ RUN find ${RSTUDIO_HOME}/scripts -name '*.sh' -type f | xargs chmod +x \
  && echo "PIP_USER=true" >>  $R_ENVIRON_SITE
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* && \
-    usermod -o -u 1000 rstudio && \
+    usermod -o -u 1000 rstudio || usermod -o -u 1000 jovyan && \
     find / \( -path /proc -o -path /sys -o -path /dev \) -prune -o -user 1001 -exec chown -h 1000 {} \;
 
 
