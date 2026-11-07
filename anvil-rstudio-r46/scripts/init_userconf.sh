@@ -103,11 +103,6 @@ if [ "${RUNROOTLESS}" = "true" ]; then
     done
 fi
 
-if [[ ${DISABLE_AUTH,,} == "true" ]]; then
-    cp /etc/rstudio/disable_auth_rserver.conf /etc/rstudio/rserver.conf
-    echo "USER=$USER" >>/etc/environment
-fi
-
 if grep --quiet "auth-none=1" /etc/rstudio/rserver.conf; then
     echo "Skipping authentication as requested"
 elif [ -z "$PASSWORD" ]; then
@@ -170,9 +165,7 @@ echo "$USER:$PASSWORD" | chpasswd
 if [ "${RUNROOTLESS}" = "true" ]; then
     echo "No sudoers changes needed when running rootless"
 elif [[ ${ROOT,,} == "true" ]]; then
-    line='%sudo ALL=(ALL) NOPASSWD:ALL'
-    sudoers_file='/etc/sudoers'
-    adduser "$USER" sudo && { grep -qxF "$line" "$sudoers_file" || echo "$line"  >> "$sudoers_file"; }
+    adduser "$USER" sudo && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >>/etc/sudoers
     echo "$USER added to sudoers"
 fi
 
@@ -192,3 +185,5 @@ if [ "$LANG" != "en_US.UTF-8" ]; then
     /usr/sbin/locale-gen --lang "$LANG"
     /usr/sbin/update-locale --reset LANG="$LANG"
 fi
+
+

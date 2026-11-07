@@ -33,7 +33,6 @@ apt_install \
     libtiff5-dev \
     libjpeg-dev \
     unixodbc-dev \
-    libuv1-dev \
     xz-utils
 
 install2.r --error --skipinstalled -n "$NCPUS" \

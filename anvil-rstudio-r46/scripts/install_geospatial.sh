@@ -45,6 +45,7 @@ apt_install \
 
 install2.r --error --skipmissing --skipinstalled -n "$NCPUS" \
     RColorBrewer \
+    RandomFields \
     RNetCDF \
     classInt \
     deldir \
@@ -52,10 +53,13 @@ install2.r --error --skipmissing --skipinstalled -n "$NCPUS" \
     hdf5r \
     lidR \
     mapdata \
+    maptools \
     mapview \
     ncdf4 \
     proj4 \
     raster \
+    rgdal \
+    rgeos \
     rlas \
     sf \
     sfarrow \
@@ -84,7 +88,7 @@ fi
 
 # Clean up
 rm -rf /var/lib/apt/lists/*
-rm -r /tmp/downloaded_packages
+rm -rf /tmp/downloaded_packages
 
 ## Strip binary installed lybraries from RSPM
 ## https://github.com/rocker-org/rocker-versioned2/issues/340
