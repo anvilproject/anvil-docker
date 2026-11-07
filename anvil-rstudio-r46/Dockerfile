@@ -7,7 +7,7 @@ FROM us.gcr.io/broad-dsp-gcr-public/terra-base:1.0.1
 
 USER root
 
-ENV R_VERSION="4.6.1"
+ENV R_VERSION="4.6.2"
 ENV R_HOME="/usr/local/lib/R"
 ENV TZ="Etc/UTC"
 
@@ -39,7 +39,7 @@ COPY scripts/default_user.sh /rocker_scripts/default_user.sh
 COPY scripts/init_set_env.sh /rocker_scripts/init_set_env.sh
 COPY scripts/init_userconf.sh /rocker_scripts/init_userconf.sh
 
-RUN apt update && apt install -y --no-install-recommends zlib1g-dev perl xz-utils
+RUN apt update && apt install -y --no-install-recommends zlib1g-dev perl xz-utils libudunits2-dev libssl-dev
 RUN Rscript -e "install.packages(c('tinytex', 'BiocManager'), repos = 'https://cloud.r-project.org')"
 
 RUN apt-get update \
