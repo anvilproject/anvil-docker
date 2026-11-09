@@ -4,7 +4,7 @@ steps:
     args:
       - -c
       - |
-        cd anvil-rstudio-bioconductor
+        cd anvil-rstudio-r46
         tag=$(cat ./VERSION)
         out=$(docker pull ghcr.io/anvilproject/anvil-rstudio-bioconductor:$tag)
         while [[ $out != *"up to date"* ]]; do
