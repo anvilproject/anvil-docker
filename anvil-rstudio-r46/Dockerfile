@@ -7,6 +7,17 @@ FROM us.gcr.io/broad-dsp-gcr-public/terra-base:1.0.1
 
 USER root
 
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends ca-certificates gnupg curl && \
+    curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg \
+      | gpg --batch --yes --dearmor -o /usr/share/keyrings/cloud.google.gpg && \
+    echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" \
+      > /etc/apt/sources.list.d/google-cloud-sdk.list && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends google-cloud-cli && \
+    rm -rf /var/lib/apt/lists/* && \
+    gcloud --version
+
 ENV R_VERSION="4.6.2"
 ENV R_HOME="/usr/local/lib/R"
 ENV TZ="Etc/UTC"
@@ -54,8 +65,6 @@ RUN Rscript -e "tinytex::install_tinytex(dir = '/opt/TinyTeX', add_path = FALSE)
 RUN Rscript -e "tinytex::tlmgr_install(c('fancyhdr', 'titlesec', 'enumitem'))"
 
 RUN apt-get update && apt install -y libuv1-dev
-RUN Rscript -e "BiocManager::install(c('GenomicRanges', 'Seqinfo', 'limma', 'DESeq2', 'scater', 'scran', \
-     'SpatialExperiment', 'SpatialFeatureExperiment'))"
 
 RUN /rocker_scripts/install_rstudio.sh
 
@@ -69,7 +78,13 @@ RUN apt-get update \
       xz-utils vim libcurl4-openssl-dev libbz2-dev libmagick++-dev \
       libudunits2-dev libgdal-dev libgeos-dev libproj-dev libsqlite3-dev libfftw3-dev \
       libnvidia-compute-580 nvidia-utils-580 \
+      cmake libabsl-dev \
  && rm -rf /var/lib/apt/lists/*
+
+RUN Rscript -e "BiocManager::install(c('GenomicRanges', 'Seqinfo', 'limma', 'DESeq2', 'scater', 'scran', \
+     'SpatialExperiment', 'SpatialFeatureExperiment'))"
+
+RUN Rscript -e "BiocManager::install(c('AnVIL', 'AnVILGCP'), Ncpus=2)"
 
 ### Nov 7 2026 -- bypassing this component for now
 ## Local agentic coding: prebuilt llama.cpp, Node 22, Pi/OpenCode, hf CLI, t4-coder
