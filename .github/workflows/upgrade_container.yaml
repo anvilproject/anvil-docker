@@ -3,26 +3,26 @@ on:
   workflow_dispatch:
     inputs:
       base_image:
-        description: 'Base image to upgrade (e.g., us.gcr.io/broad-dsp-gcr-public/anvil-rstudio-bioconductor:3.20.1)'
+        description: 'Base image to upgrade (e.g., us.gcr.io/broad-dsp-gcr-public/anvil-rstudio-bioconductor:3.23.0)'
         required: true
         type: string
       r_version:
         description: 'R version to install'
         required: true
-        default: '4.5.1'
+        default: '4.6.2'
         type: string
       bioc_version:
         description: 'Bioconductor version to install'
         required: true
-        default: '3.21'
+        default: '3.23'
         type: string
       rstudio_url:
         description: 'RStudio Server download URL'
         required: true
-        default: 'https://download2.rstudio.org/server/jammy/amd64/rstudio-server-2025.05.1-513-amd64.deb'
+        default: 'https://download2.rstudio.org/server/jammy/amd64/rstudio-server-2026.10.1-239-amd64.deb'
         type: string
       output_tag:
-        description: 'Output tag for the upgraded image (e.g., 3.21.0-dev)'
+        description: 'Output tag for the upgraded image (e.g., 3.23.0-dev)'
         required: true
         type: string
       target_directory:
