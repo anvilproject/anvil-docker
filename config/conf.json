@@ -55,6 +55,28 @@
                 "include_in_custom_dataproc" : true,
                 "include_in_custom_gce" : true
             }
+        },
+        {
+            "name" : "anvil-rstudio-r46",
+            "base_label" : "R / Bioconductor",
+            "tools" : [
+                "python",
+                "r"
+            ],
+            "packages" : {
+                "r" : [
+                    "Bioconductor",
+                    "tidyverse"
+                ]
+            },
+            "version" : "##anvil-rstudio-r46-VERSION##",
+            "automated_flags" : {
+                "generate_docs" : true,
+                "include_in_ui" : true,
+                "build" : true,
+                "include_in_custom_dataproc" : true,
+                "include_in_custom_gce" : true
+            }
         }
     ]
 }
