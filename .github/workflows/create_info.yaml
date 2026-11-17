@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       directory:
-        default: "anvil-rstudio-bioconductor"
+        default: "anvil-rstudio-r46"
         required: true
       version:
         required: false

@@ -44,6 +44,13 @@ ENV RSTUDIO_PORT=8001
 ENV RSTUDIO_HOME=/etc/rstudio
 ENV RSTUDIO_USERSETTING=/home/rstudio/.config/rstudio/rstudio-prefs.json
 
+ENV RSTUDIO_PORT 8001
+COPY rserver.conf $RSTUDIO_HOME/rserver.conf
+COPY rstudio-prefs.json $RSTUDIO_USERSETTING
+
+RUN sed -i 's/"always_save_history": false/"always_save_history": true/g'  $RSTUDIO_USERSETTING \
+ && sed -i 's/"save_workspace": "never"/"save_workspace": "always"/g' $RSTUDIO_USERSETTING
+
 COPY scripts/install_rstudio.sh /rocker_scripts/install_rstudio.sh
 COPY scripts/install_s6init.sh /rocker_scripts/install_s6init.sh
 COPY scripts/default_user.sh /rocker_scripts/default_user.sh
@@ -96,6 +103,7 @@ RUN Rscript -e "BiocManager::install(c('AnVIL', 'AnVILGCP'), Ncpus=2)"
 ENV PASSWORD="bioc"
 
 ENV RSTUDIO_HOME=/home/rstudio
+ENV RSTUDIO_USERSETTING /home/rstudio/.config/rstudio/rstudio-prefs.json
 EXPOSE 8001
 ENTRYPOINT ["/init"]
 
