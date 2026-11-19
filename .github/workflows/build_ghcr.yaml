@@ -12,8 +12,8 @@ jobs:
       matrix:
         base:
           - {directory: 'anvil-rstudio-r46'}
-          - {directory: 'anvil-rstudio-bioconductor'}
-          - {directory: 'anvil-rstudio-bioconductor-devel'}
+#          - {directory: 'anvil-rstudio-bioconductor'}
+#          - {directory: 'anvil-rstudio-bioconductor-devel'}
     name: Build branch images
     runs-on: ubuntu-latest
     steps:
