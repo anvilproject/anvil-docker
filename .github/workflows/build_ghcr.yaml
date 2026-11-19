@@ -74,6 +74,9 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          provenance: false
+          sbom: false
+          outputs: type=image,oci-mediatypes=false
 
       - name: Generate info JSON with Broad script
         if: steps.changed.outputs.CHANGED == 'TRUE'
