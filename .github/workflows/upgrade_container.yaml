@@ -3,7 +3,8 @@ on:
   workflow_dispatch:
     inputs:
       base_image:
-        description: 'Base image to upgrade (e.g., us.gcr.io/broad-dsp-gcr-public/anvil-rstudio-bioconductor:3.23.0)'
+        description: 'Base image to upgrade (e.g., us.gcr.io/broad-dsp-gcr-public/anvil-rstudio-r46:3.23.0)'
+        default: 'us.gcr.io/broad-dsp-gcr-public/anvil-rstudio-r46:3.23.0'
         required: true
         type: string
       r_version:
@@ -26,11 +27,12 @@ on:
         required: true
         type: string
       target_directory:
-        description: 'Target directory for the image (anvil-rstudio-bioconductor or anvil-rstudio-bioconductor-devel)'
+        description: 'Target directory for the image'
         required: true
-        default: 'anvil-rstudio-bioconductor'
+        default: 'anvil-rstudio-r46'
         type: choice
         options:
+          - anvil-rstudio-r46
           - anvil-rstudio-bioconductor
           - anvil-rstudio-bioconductor-devel
 
