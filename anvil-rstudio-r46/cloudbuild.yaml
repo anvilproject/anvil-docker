@@ -6,11 +6,11 @@ steps:
       - |
         cd anvil-rstudio-r46
         tag=$(cat ./VERSION)
-        out=$(docker pull ghcr.io/anvilproject/anvil-rstudio-bioconductor:$tag)
+        out=$(docker pull ghcr.io/anvilproject/anvil-rstudio-r46:$tag)
         while [[ $out != *"up to date"* ]]; do
-          out=$(docker pull ghcr.io/anvilproject/anvil-rstudio-bioconductor:$tag);
+          out=$(docker pull ghcr.io/anvilproject/anvil-rstudio-r46:$tag);
           sleep 30;
         done
-        docker tag ghcr.io/anvilproject/anvil-rstudio-bioconductor:$tag us.gcr.io/broad-dsp-gcr-public/anvil-rstudio-bioconductor:$tag
-        docker push us.gcr.io/broad-dsp-gcr-public/anvil-rstudio-bioconductor:$tag
+        docker tag ghcr.io/anvilproject/anvil-rstudio-r46:$tag us.gcr.io/broad-dsp-gcr-public/anvil-rstudio-r46:$tag
+        docker push us.gcr.io/broad-dsp-gcr-public/anvil-rstudio-r46:$tag
 timeout: 3600s
