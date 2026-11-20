@@ -57,6 +57,9 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
       - uses: actions/setup-python@v5
         with:
           python-version: '3.10'
@@ -77,6 +80,9 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          provenance: false
+          sbom: false
+          outputs: type=image,oci-mediatypes=false
           build-args: |
             BASE_IMAGE=${{ inputs.base_image }}
             R_VERSION=${{ inputs.r_version }}
