@@ -93,7 +93,11 @@ jobs:
           sed -i "s/##${{inputs.target_directory}}-VERSION##/${{ inputs.output_tag }}/g" config/conf.json
           bash scripts/generate_packages.sh ${{ inputs.target_directory }}
           # Remove spaces from filenames
-          (cd ${{ inputs.target_directory }}/info && for file in *; do [[ "$file" == *" "* ]] && mv "$file" "${file// /}"; done)
+          # (cd ${{ inputs.target_directory }}/info && for file in *; do [[ "$file" == *" "* ]] && mv "$file" "${file// /}"; done)
+          # the action crash might be fixed by the following, suggested by claude
+          (cd anvil-rstudio-r46/info && for file in *; do
+            if [[ "$file" == *" "* ]]; then mv "$file" "${file// /}"; fi
+          done)
           cp -r ${{ inputs.target_directory }}/info /tmp/${{ inputs.target_directory }}/
 
       - name: Update VERSION files
