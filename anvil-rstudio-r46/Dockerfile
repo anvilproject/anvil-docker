@@ -57,6 +57,10 @@ COPY scripts/default_user.sh /rocker_scripts/default_user.sh
 COPY scripts/init_set_env.sh /rocker_scripts/init_set_env.sh
 COPY scripts/init_userconf.sh /rocker_scripts/init_userconf.sh
 
+RUN mkdir -p /etc/rstudio/scripts
+COPY scripts/set_up_package_dir.sh /etc/rstudio/scripts/set_up_package_dir.sh
+RUN chmod +x /etc/rstudio/scripts/*.sh
+
 RUN apt update && apt install -y --no-install-recommends zlib1g-dev perl xz-utils libudunits2-dev libssl-dev
 RUN Rscript -e "install.packages(c('tinytex', 'BiocManager'), repos = 'https://cloud.r-project.org')"
 
