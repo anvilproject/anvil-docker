@@ -101,7 +101,7 @@ jobs:
           # Remove spaces from filenames
           # (cd ${{ inputs.target_directory }}/info && for file in *; do [[ "$file" == *" "* ]] && mv "$file" "${file// /}"; done)
           # the action crash might be fixed by the following, suggested by claude
-          (cd anvil-rstudio-r46/info && for file in *; do
+          (cd ${{ inputs.target_directory }}/info && for file in *; do
             if [[ "$file" == *" "* ]]; then mv "$file" "${file// /}"; fi
           done)
           cp -r ${{ inputs.target_directory }}/info /tmp/${{ inputs.target_directory }}/

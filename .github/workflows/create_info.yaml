@@ -44,7 +44,9 @@ jobs:
       - name: Copy to tmp before retry
         run: |
           # Remove spaces
-          (cd ${{ inputs.directory }}/info && for file in *; do [[ "$file" == *" "* ]] && mv "$file" "${file// /}"; done) || true
+          (cd ${{ inputs.directory }}/info && for file in *; do
+            if [[ "$file" == *" "* ]]; then mv "$file" "${file// /}"; fi
+          done)
           cp -r ${{ inputs.directory }}/info /tmp/${{ inputs.directory }}/
 
       - name: Push info
